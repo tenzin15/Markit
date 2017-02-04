@@ -4,13 +4,28 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-require('dotenv').config();
+// module dependencies
+
+// add new modules and files here
+
 
 var app = express();
+// override with POST having ?_method=PUT
+app.use(methodOverride('_method'));
+
+
+require('dotenv').config();
+var methodOverride=require('method-override');
+
+
+app.use(methodOverride('_method'));
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
