@@ -15,8 +15,7 @@ var users = require('./routes/users');
 
 
 var app = express();
-// override with POST having ?_method=PUT
-app.use(methodOverride('_method'));
+
 
 
 require('dotenv').config();
