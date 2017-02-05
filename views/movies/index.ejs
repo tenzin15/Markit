@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href='/stylesheets/style.css' />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  </head>
+  <body class="bg">
+  <p>User Id: <%= user_id %></p>
+    <div class="container">
+      <div class="row">
+        <h1><a href="/user">Profile</a></h1>
+        <h1>Welcome to Markit</h1>
+        <div class="col-md-12 spa">
+          <div class="dirc"><a class="uzz" href="/movies/new">Create a new folder</a></div>
+        </div>
+        <div class="col-md-12 spa text-center">
+        <% movies.forEach(function(movies) { %>
+        <div class="col-md-2 spb">
+          <a  class="blz" href="<%= '/movies/' + movies.id%>"><%= movies.title %></a>
+        </div>
+        <% }) %>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+

@@ -1,9 +1,17 @@
-var express = require('express');
-var router = express.Router();
+// module dependencies
+const express = require('express');
+const authHelpers = require('../auth/auth-helpers');
+// create an express router
+const router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+/* GET user profile page. */
+// add route here
+router.get('/', authHelpers.loginRequired, (req, res, next) => {
+  // once logged in succesfully,
+  // render views/user/index.ejs by passing the user info as json
+  res.render('user/index', {
+    user: req.user.dataValues
+  });
 });
 
 module.exports = router;

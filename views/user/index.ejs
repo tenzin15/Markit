@@ -8,18 +8,19 @@
           <div class="col s12 m6">
             <div class="card cyan darken-1">
               <div class="card-content white-text">
-                <span class="card-title">Hello, this is the user profile.</span>
+                <span class="card-title">Hello <%= user.firstName %>, your profile:</span>
+                <p>User Id: <%= user.id %></p>
+                <p>Username: <%= user.username %></p>
                 <p>First Name: <%= user.firstName %></p>
                 <p>Last Name: <%= user.lastName %></p>
                 <p>Email: <%= user.email %></p>
-                <p>DOB: <%= user.dob %></p>
               </div>
           </div>
         </div>
       </div>
       <a href="/auth/logout" class="btn-large waves-effect waves-light orange left">Logout</a>
-      <a href="/movies" class="btn-large waves-effect waves-light orange left goToMoviesBtn">Movies</a>
-      <a href="/directors" class="btn-large waves-effect waves-light orange left">Directors</a>
+      <a href="/movies" class="btn-large waves-effect waves-light orange left goToMoviesBtn">Folders</a>
+      <a href="/directors" class="btn-large waves-effect waves-light orange left">Bookmarks</a>
       </div>
       </div>
     </main>
