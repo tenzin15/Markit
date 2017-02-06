@@ -37,24 +37,14 @@
               </form>
             </div>
             <div class="col-md-12 folder alz"><i class="fa fa-folder-open-o spa" aria-hidden="true"></i>folders</div>
+<% folders.forEach(function(folder) { %>
             <div class="col-md-12">
               <div class="row folder-name">
-                <div class="col-md-9 text-right">Mahabharata</div>
+                <div class="col-md-9 text-right"><%= folder.title%></div>
                 <div class="col-md-3 text-right"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
               </div>
             </div>
-            <div class="col-md-12">
-              <div class="row folder-name">
-                <div class="col-md-9 text-right">JavaScript</div>
-                <div class="col-md-3 text-right"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="row folder-name">
-                <div class="col-md-9 text-right">I love react</div>
-                <div class="col-md-3 text-right"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
-              </div>
-            </div>
+<% }) %>
           </div>
         </div>
 
