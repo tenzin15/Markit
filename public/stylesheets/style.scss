@@ -8,7 +8,7 @@ body {
 
 // FONTS
 $title: 2.3em;
-$usrn: 1.8em;
+$usrn: 1.6em;
 $small: 1.2em;
 //padding
 $space1: 30px;
@@ -30,7 +30,10 @@ $bot: solid 1px #e5e5e5;
 $sidebar-space: 20px;
 // ICON space
 $rightspc: 10px;
-
+// box title and url space
+$boxspx: 15px;
+// BOX icons
+$boxspz: 10px;
 //img
 
 // Delete padding 15px left and right
@@ -61,6 +64,7 @@ $rightspc: 10px;
   overflow: hidden;
   padding-bottom: 700px;
   z-index: 1;
+  padding-top: 40px;
 }
 //App title name
 .sidebar-title{
@@ -78,6 +82,16 @@ $rightspc: 10px;
   color: $white;
   padding: $space1;
   border-bottom: $bot;
+}
+.usr-name a{
+  font-size: $usrn;
+  color: $white;
+  text-decoration: none;
+}
+.usr-name a:hover{
+  font-size: $usrn;
+  color: $blue-dark;
+  text-decoration: none;
 }
 //button space top
 .alg{
@@ -118,20 +132,70 @@ $rightspc: 10px;
 
 .boxz{
  border: $bot;
- height: 100px;
  width: 100%;
+ overflow: hidden;
+ background-color: #fff;
+}
+.brds{
+  border-top: $bot;
+  border-bottom: $bot;
 }
 
+//BOX EDIT
+.edit-box{
+  border: $bot;
+  background-color: $blue-medium;
+  color: #fff;
+  padding: $boxspz;
+  font-size: 18px;
+}
+.edit-box:hover{
+  background-color: #1c5377;
+}
+.delete-box{
+  border: $bot;
+  background-color: $blue-dark;
+  color: #fff;
+  padding: $boxspz;
+  font-size: 18px;
+}
+.delete-box:hover{
+  background-color: #171e25;
+}
+.title-box{
+  border: $bot;
+  padding: $boxspx;
+}
+.title-box-name{
+  border: $bot;
+  padding: $boxspx;
+  font-weight: 700;
+}
+.url-box{
+  border: $bot;
+  padding: $boxspx;
+}
+.url-box-name{
+  border: $bot;
+  padding: $boxspx;
+  font-weight: 700;
+}
+.creat{
+  font-size: 1.4em;
+  margin-top: 10px;
+  color: $white;
+  margin-bottom: 15px;
+}
 
 // form
 
 #custom-search-form {
-
+  width: 100%;
  }
  input[type=text], select {
-    width: 350px;
+    width: 100%;
     padding: 12px 20px;
-    margin: 8px 0;
+    margin: 8px 7px;;
     display: inline-block;
     border: 1px solid $blue;
     border-radius: 4px;
