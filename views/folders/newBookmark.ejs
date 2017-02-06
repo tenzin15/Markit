@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  </head>
+  <body class="bg">
+    <p>User Id: <%= user.id %></p>
+    <p>Folder Title: <%= folder_title %></p>
+    <p>Folder Id: <%= folder_id %></p>
+    <a href="/user">Profile</a>
+    <div class="container">
+      Create New Bookmark
+      <div class="row">
+        <div class="col-md-12 spa">
+          <form action='/folders/new/bookmark' method='POST'>
+            <label class="firstName blz"> Title </label>
+            <input type="text" name="title" class="firstName" />
+            <label class="firstName blz"> Url </label>
+            <input type="text" name="url" class="firstName" />
+            <input type="hidden" name="user_id" value="<%= user.id %>">
+            <input type="hidden" name="folder_id" value="<%= folder_id %>">
+            <input type="hidden" name="folder_title" value="<%= folder_title %>">
+            <br />
+            <input type="submit" />
+          </form>
+        </div>
+      </div>
+      <a class="newzz" href="/folders">&larr; Go back to folders page</a>
+    </div>
+  </body>
+</html>
