@@ -6,7 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-// need for user auth
+// needed for user auth
 var session = require('express-session');
 var passport = require('passport');
 var auth = require('./routes/auth');
