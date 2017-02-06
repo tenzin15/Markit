@@ -2,7 +2,7 @@
 module.exports = {
   up: function(queryInterface, Sequelize) {
     return queryInterface.createTable('Bookmarks', {
-      id: {
+      bmId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
