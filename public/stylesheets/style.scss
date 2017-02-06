@@ -1,6 +1,151 @@
-body
-  padding: 50px
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+body {
+   overflow-x: hidden;
+}
+/* Toggle Styles */
 
-a
-  color: #00B7FF
+
+// STYLE
+
+// FONTS
+$title: 2.3em;
+$usrn: 1.8em;
+$small: 1.2em;
+//padding
+$space1: 30px;
+$space2: 15px;
+// COLORS
+$white: #757575;
+$blue: #2980B9;
+// COLOR SCHEME
+$blue-light: #3498DB;
+$blue-medium: #2980B9;
+$blue-dark: #2C3E50;
+$red: #E74C3C;
+$grey: #f1f1f1;
+
+// border
+$bot: solid 1px #e5e5e5;
+
+//menu space
+$sidebar-space: 20px;
+// ICON space
+$rightspc: 10px;
+
+// Delete padding 15px left and right
+.container-fluid{
+  padding: 0 !important;
+}
+// Remove margin left and right 15px
+.row{
+}
+//Div col-md-3
+.left-side{
+  background-color: #fff;
+  -webkit-box-shadow: 10px 0px 5px 0px rgba(201,197,201,1);
+  -moz-box-shadow: 10px 0px 5px 0px rgba(201,197,201,1);
+  box-shadow: 10px 0px 5px 0px rgba(201,197,201,1);
+  padding-bottom: 290px;
+  z-index: 100;
+}
+.begin{
+  height: 70px;
+}
+.top-right{
+  height: 46px;
+}
+//Div col-md-9
+.right-side{
+  background-color: $grey;
+  overflow: hidden;
+  padding-bottom: 700px;
+  z-index: 1;
+}
+//App title name
+.sidebar-title{
+  font-size: $title;
+  color: $white;
+}
+.selectpicker{
+  width: 100%;
+  margin-top: 10px;
+}
+
+//User name
+.usr-name{
+  font-size: $usrn;
+  color: $white;
+  padding: $space1;
+  border-bottom: $bot;
+}
+//button space top
+.alg{
+  margin-top: 20px;
+}
+// icon space right
+.spa{
+  margin-right: $rightspc;
+}
+//icon space left
+.spb{
+  margin-left: $rightspc;
+}
+.alz{
+  font-size: $usrn;
+  color: $white;
+  padding: $space1;
+  border-top: $bot;
+  margin-top: 20px;
+}
+.blue{
+  background-color: $blue;
+}
+.dark{
+  background-color: $blue-dark;
+}
+//folder name aside
+.folder-name{
+  font-size: 1.2em;
+  color: $white;
+  border-bottom: $bot;
+  padding: $space2;
+}
+.icon-trash{
+  color: $red;
+}
+
+
+.boxz{
+ border: $bot;
+ height: 100px;
+ width: 100%;
+}
+
+
+// form
+
+#custom-search-form {
+
+ }
+ input[type=text], select {
+    width: 350px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid $blue;
+    border-radius: 4px;
+    box-sizing: border-box;
+    float: left;
+}
+.form-control{
+  float: left !important;
+}
+.btz {
+    width: 50px;
+    background-color: #3498DB;
+    color: white;
+    padding: 14px 20px;
+    margin: 20px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
