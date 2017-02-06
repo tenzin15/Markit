@@ -3,14 +3,14 @@ var router = express.Router();
 var models = require('../db/models/index');
 var authHelpers = require('../auth/auth-helpers');
 
-/* GET movies page. */
+/* GET folders page. */
 
-// creates route to display all movies in movies database on the dom.
+// creates route to display all folders in folders database on the dom.
 router.get('/', function(req, res, next) {
-  models.Folder.findAll({ where: { user_id: req.user.dataValues.id } }).then(function(movies) {
-    res.render('movies/index', {
-      title: 'Movies',
-      movies: movies,
+  models.Folder.findAll({ where: { user_id: req.user.dataValues.id } }).then(function(folders) {
+    res.render('folders/index', {
+      title: 'folders',
+      folders: folders,
       user_id: req.user.dataValues.id
     });
   });
@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
 
 // creates a page that allows user to add a movie to the database
 router.get('/new', function(req, res, next) {
-  res.render('movies/new', {
+  res.render('folders/new', {
     user: req.user.dataValues
   });
 });
@@ -29,25 +29,25 @@ router.post('/', function(req, res, next) {
     title: req.body.title,
     user_id: req.body.user_id
   }).then(function() {
-    res.redirect('/movies')
+    res.redirect('/folders')
   });
 });
 
-// creates route to movies/id# that renders movie titles and synopsis based on whichever movie id was requested
+// creates route to folders/id# that renders movie titles and synopsis based on whichever movie id was requested
 router.get('/:id', function(req, res, next) {
-  models.Movie.findById(req.params.id).then(function(movies) {
+  models.Movie.findById(req.params.id).then(function(folders) {
     res.render('moviesHome', {
-      title: movies.title,
-      movies: movies,
-      synopsis: movies.synopsis
+      title: folders.title,
+      folders: folders,
+      synopsis: folders.synopsis
     });
   });
 });
 
-// GET /movies/:id/edit: this should bring the user to a form to edit the info. of the movie corresponding to the id. Don't worry about allowing the user to edit the director for now, we can't be sure that whomever is in charge of that part of the app has completed their work
+// GET /folders/:id/edit: this should bring the user to a form to edit the info. of the movie corresponding to the id. Don't worry about allowing the user to edit the director for now, we can't be sure that whomever is in charge of that part of the app has completed their work
 router.get('/:id/edit', function(req, res, next) {
   models.Movie.findById(req.params.id).then(function(movie) {
-    res.render('moviesEdit', {
+    res.render('foldersEdit', {
       movie:movie
     });
   });
@@ -60,7 +60,7 @@ router.put('/:id', function(req, res, next) {
     synopsis: req.body.synopsis
   }, { where: { id: req.params.id } })
   .then(function() {
-    res.redirect('/movies/' + req.params.id);
+    res.redirect('/folders/' + req.params.id);
   });
 });
 
@@ -68,7 +68,7 @@ router.delete('/:id', function(req, res, next) {
   models.Movie.destroy({
     where: { id: req.params.id }
   }).then(function(movie) {
-    res.redirect('/movies');
+    res.redirect('/folders');
   });
 });
 
