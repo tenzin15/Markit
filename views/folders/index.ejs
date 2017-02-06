@@ -7,20 +7,41 @@
   </head>
   <body class="bg">
   <p>User Id: <%= user_id %></p>
+  <a href="/user">Profile</a>
     <div class="container">
       <div class="row">
-        <h1><a href="/user">Profile</a></h1>
-        <h1>Welcome to Markit</h1>
-        <div class="col-md-12 spa">
-          <div class="dirc"><a class="uzz" href="/movies/new">Create a new folder</a></div>
-        </div>
         <div class="col-md-12 spa text-center">
-        <% folders.forEach(function(folders) { %>
-        <div class="col-md-2 spb">
-          <a  class="blz" href="<%= '/folders/' + folders.id%>"><%= folders.title %></a>
-        </div>
-        <% }) %>
-
+          <!-- create a new folder -->
+          <form action='/folders/new' method='POST'>
+            <label>title:</label>
+            <input type="text" name="folder_title" />
+            <input type="hidden" name="user_id" value="<%= user_id %>" />
+            <input type="submit" value="Create folder" />
+          </form>
+          <br />
+          <% folders.forEach(function(folder) { %>
+          <div class="col-md-12 spb">
+            <a  class="blz" href="<%= '/folders/' + folders.id%>"><%= folder.title %></a>
+            <div class="col-md-12 spa">
+              <ol class="col-md-12">
+                  <% bookmarks.forEach(function(bookmark) {
+                      if (parseInt(bookmark.folder_id) === parseInt(folder.id)) {
+                  %>
+                        <li>title: <%= bookmark.title %><br />url: <%= bookmark.url %></li>
+                        <br />
+                <% }}) %>
+              </ol>
+              <!-- create a new bookmark -->
+              <form action='/folders/bookmarks/new' method='POST'>
+                <input type="hidden" name="folder_id" value="<%= folder.id %>" />
+                <input type="hidden" name="folder_title" value="<%= folder.title %>" />
+                <input type="submit" value="Create bookmark" />
+              </form>
+              <br />
+            </div>
+            <!-- <div class="dirc"><a class="uzz" href="/folders/new">Create bookmark</a></div> -->
+          <% }) %>
+          </div>
         </div>
       </div>
     </div>
