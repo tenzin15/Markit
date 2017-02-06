@@ -14,18 +14,20 @@
         <div class="col-md-12 begin">
           <div class="row">
             <div class="col-md-2 sidebar-title text-center">Markit</div>
-            <div class="col-md-10 top-right">
+            <div class="col-md-8 top-right">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-7">
                   <form id="custom-search-form" class="form-search form-horizontal pull-left">
                     <input type="text"  placeholder="Search">
                   </form>
                 </div>
               </div>
             </div>
+            <div class="col-md-2 llz text-right"><a href="menu-toggle" class="btn btn-success" id="menu-toggle">Toggle </a></div>
           </div>
         </div>
-        <div class="col-md-2 col-sm-3 col-xs-3 left-side">
+        <div id="lwrapper" class="col-md-2 left-side">
+          <div class="left-fixedz">
           <div class="row text-center">
             <div class="col-md-12 usr-name"><i class="fa fa-user-circle spa" aria-hidden="true"></i><a href="/user"><%= user_firstName %></a></div>
             <div class="col-md-12">
@@ -37,9 +39,10 @@
               </form>
             </div>
             <div class="col-md-12 folder alz"><i class="fa fa-folder-open-o spa" aria-hidden="true"></i>folders</div>
-<% folders.forEach(function(folder) { %>
+          <% folders.forEach(function(folder) { %>
             <div class="col-md-12">
               <div class="row folder-name">
+
                 <div class="col-md-9 text-right">
                     <form action='/folders/bookmarks' method='POST'>
                       <input type="hidden" name="folder_id" value="<%= folder.id %>" />
@@ -47,23 +50,18 @@
                       <input type="submit" value="<%= folder.title %>" />
                     </form>
                 </div>
+
                 <div class="col-md-3 text-right"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
               </div>
             </div>
 <% }) %>
           </div>
         </div>
+        </div>
 
-        <div class="col-md-10 col-sm-9 col-xs-9 right-side">
+        <div id="rwrapper" class="col-md-10 right-side">
+          <div class="left-fixedz">
           <div class="row">
-          <% if (bookmarks.length < 1) { %>
-                <!-- create a new bookmark -->
-                <form action='/folders/bookmarks/new' method='POST'>
-                  <input type="text" name="folder_id" value="" />
-                  <input type="text" name="folder_title" value="" />
-                  <input type="submit" value="Create bookmark" />
-                </form>
-            <% } %>
 <% folders.forEach(function(folder) {
     bookmarks.forEach(function(bookmark) {
        if (parseInt(bookmark.folder_id) === parseInt(folder.id)) { %>
@@ -88,12 +86,22 @@
 
             </div>
           </div>
+          </div>
         </div>
       </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- comment to test push again -->
+    <script>
+    <!-- Menu Toggle Script -->
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#lwrapper").toggleClass("toggled");
+        $('#rwrapper').toggleClass("col-md-12").toggleClass("col-md-10");
+
+    });
+    </script>
+
   </body>
 </html>
