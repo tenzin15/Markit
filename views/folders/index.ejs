@@ -14,18 +14,20 @@
         <div class="col-md-12 begin">
           <div class="row">
             <div class="col-md-2 sidebar-title text-center">Markit</div>
-            <div class="col-md-10 top-right">
+            <div class="col-md-8 top-right">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-7">
                   <form id="custom-search-form" class="form-search form-horizontal pull-left">
                     <input type="text"  placeholder="Search">
                   </form>
                 </div>
               </div>
             </div>
+            <div class="col-md-2 llz text-right"><a href="menu-toggle" class="btn btn-success" id="menu-toggle">Toggle </a></div>
           </div>
         </div>
-        <div class="col-md-2 col-sm-3 col-xs-3 left-side">
+        <div id="lwrapper" class="col-md-2 left-side">
+          <div class="left-fixedz">
           <div class="row text-center">
             <div class="col-md-12 usr-name"><i class="fa fa-user-circle spa" aria-hidden="true"></i><a href="/user"><%= user_firstName %></a></div>
             <div class="col-md-12">
@@ -57,8 +59,10 @@
             </div>
           </div>
         </div>
+        </div>
 
-        <div class="col-md-10 col-sm-9 col-xs-9 right-side">
+        <div id="rwrapper" class="col-md-10 right-side">
+          <div class="left-fixedz">
           <div class="row">
 <% folders.forEach(function(folder) { %>
   <% bookmarks.forEach(function(bookmark) {
@@ -84,12 +88,22 @@
 
             </div>
           </div>
+          </div>
         </div>
       </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+    <!-- Menu Toggle Script -->
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#lwrapper").toggleClass("toggled");
+        $('#rwrapper').toggleClass("col-md-12").toggleClass("col-md-10");
+
+    });
+    </script>
 
   </body>
 </html>

@@ -11,7 +11,12 @@
   -moz-box-shadow: 10px 0px 5px 0px #c9c5c9;
   box-shadow: 10px 0px 5px 0px #c9c5c9;
   height: 100vh;
-  z-index: 100; }
+  z-index: 100;
+  padding-left: 0; }
+
+.left-fixedz {
+  height: 90%;
+  overflow: scroll; }
 
 .begin {
   height: 70px; }
@@ -24,7 +29,7 @@
   overflow: hidden;
   height: 100vh;
   z-index: 1;
-  padding-top: 40px; }
+  padding-top: 15px; }
 
 .sidebar-title {
   font-size: 2.3em;
@@ -33,6 +38,9 @@
 .selectpicker {
   width: 100%;
   margin-top: 10px; }
+
+.llz {
+  margin-top: 15px; }
 
 .usr-name {
   font-size: 1.6em;
@@ -86,7 +94,15 @@
   width: 100%;
   overflow: hidden;
   background-image: url("../img/bg.jpg");
-  background-size: cover; }
+  background-size: cover;
+  margin: 30px 0; }
+
+.toggled {
+  display: none; }
+
+.bazinga {
+  position: absolute;
+  width: 100%; }
 
 .edit-box {
   border: solid 1px #e5e5e5;
