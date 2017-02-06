@@ -60,9 +60,17 @@
 
         <div class="col-md-10 col-sm-9 col-xs-9 right-side">
           <div class="row">
-<% folders.forEach(function(folder) { %>
-  <% bookmarks.forEach(function(bookmark) {
-      if (parseInt(bookmark.folder_id) === parseInt(folder.id)) { %>
+          <% if (bookmarks.length < 1) { %>
+                <!-- create a new bookmark -->
+                <form action='/folders/bookmarks/new' method='POST'>
+                  <input type="text" name="folder_id" value="" />
+                  <input type="text" name="folder_title" value="" />
+                  <input type="submit" value="Create bookmark" />
+                </form>
+            <% } %>
+<% folders.forEach(function(folder) {
+    bookmarks.forEach(function(bookmark) {
+       if (parseInt(bookmark.folder_id) === parseInt(folder.id)) { %>
             <div class="col-md-3">
               <div class="boxz">
                 <div class="row">
@@ -72,7 +80,7 @@
                   <div class="col-md-6 text-center delete-box"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
                 </div>
               </div>
-                <!-- create a new bookmark -->
+              <!-- create a new bookmark -->
                 <form action='/folders/bookmarks/new' method='POST'>
                   <input type="hidden" name="folder_id" value="<%= folder.id %>" />
                   <input type="hidden" name="folder_title" value="<%= folder.title %>" />
