@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "shauan",
+    "username": "YOUR_DB_USERNAME",
     "password": null,
     "database": "markit_app_dev",
     "host": "127.0.0.1",
