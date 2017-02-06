@@ -5,70 +5,79 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <!-- Bootstrap Core CSS -->
    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+   <!-- FONT AWESOME -->
+   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
   <body>
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#">
-                        Start Bootstrap
-                    </a>
-                </li>
-                <li>
-                    <a href="#">Dashboard</a>
-                </li>
-                <li>
-                    <a href="#">Shortcuts</a>
-                </li>
-                <li>
-                    <a href="#">Overview</a>
-                </li>
-                <li>
-                    <a href="#">Events</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Simple Sidebar</h1>
-                        <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
-                    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 begin">
+          <div class="row">
+            <div class="col-md-2 sidebar-title text-center">Markit</div>
+            <div class="col-md-10 top-right">
+              <div class="row">
+                <div class="col-md-5">
+                  <form id="custom-search-form" class="form-search form-horizontal pull-left">
+                    <input type="text"  placeholder="Search">
+                  </form>
                 </div>
+                <div class="col-md-3 select-space">
+                  <select class="selectpicker btn-primary">
+                  <option>Mahabharata</option>
+                  <option>JavaScript</option>
+                  <option>I love react</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                    <a href="#menu-toggle" class="btn btn-primary pull-right" id="menu-toggle">Save</a>
+                </div>
+              </div>
             </div>
-        </div>
-        <!-- /#page-content-wrapper -->
+          </div>
 
+        </div>
+        <div class="col-md-2 col-sm-3 col-xs-3 left-side">
+          <div class="row text-center">
+            <div class="col-md-12 usr-name"><i class="fa fa-user-circle spa" aria-hidden="true"></i>Tenzin</div>
+            <div class="col-md-12">
+              <button class="btn btn-primary alg ">New Folder<i class="fa fa-plus-square spb" aria-hidden="true"></i></button>
+            </div>
+            <div class="col-md-12 folder alz"><i class="fa fa-folder-open-o spa" aria-hidden="true"></i>folders</div>
+            <div class="col-md-12">
+              <div class="row folder-name">
+                <div class="col-md-9 text-right">Mahabharata</div>
+                <div class="col-md-3 text-right"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="row folder-name">
+                <div class="col-md-9 text-right">JavaScript</div>
+                <div class="col-md-3 text-right"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="row folder-name">
+                <div class="col-md-9 text-right">I love react</div>
+                <div class="col-md-3 text-right"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-10 col-sm-9 col-xs-9 right-side">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="boxz"><i class="fa fa-pencil spa" aria-hidden="true"></i><i class="fa fa-trash-o" aria-hidden="true"></i></div>
+              <div class="urlz">www.google.com</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script>
-    <!-- Menu Toggle Script -->
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
 
   </body>
 </html>
