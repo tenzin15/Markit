@@ -60,32 +60,26 @@
 
         <div class="col-md-10 col-sm-9 col-xs-9 right-side">
           <div class="row">
-            <% folders.forEach(function(folder) { %>
+<% folders.forEach(function(folder) { %>
+  <% bookmarks.forEach(function(bookmark) {
+      if (parseInt(bookmark.folder_id) === parseInt(folder.id)) { %>
             <div class="col-md-3">
-
               <div class="boxz">
                 <div class="row">
-
-                  <% bookmarks.forEach(function(bookmark) {
-                      if (parseInt(bookmark.folder_id) === parseInt(folder.id)) { %>
-                  <div class="col-md-3 title-box-name text-center">title:</div>
-                  <div class="col-md-9 title-box"><%= bookmark.title %> </div>
-                  <div class="col-md-3 url-box-name text-center">url:</div>
-                  <div class="col-md-9 url-box"><%= bookmark.url %></div>
+                  <div class="col-md-12 text-center bx-title-name"><%= bookmark.title %> </div>
+                  <div class="col-md-12 text-center bx-url-name "><%= bookmark.url %></div>
                   <div class="col-md-6 text-center edit-box"><i class="fa fa-pencil spa" aria-hidden="true"></i></div>
                   <div class="col-md-6 text-center delete-box"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
-                <% }}) %>
                 </div>
               </div>
-
                 <!-- create a new bookmark -->
                 <form action='/folders/bookmarks/new' method='POST'>
                   <input type="hidden" name="folder_id" value="<%= folder.id %>" />
                   <input type="hidden" name="folder_title" value="<%= folder.title %>" />
                   <input type="submit" value="Create bookmark" />
                 </form>
-
               </div>
+                  <% }}) %>
 <% }) %>
 
             </div>

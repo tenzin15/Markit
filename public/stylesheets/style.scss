@@ -134,12 +134,10 @@ $boxspz: 10px;
  border: $bot;
  width: 100%;
  overflow: hidden;
- background-color: #fff;
+ background-image: url("../img/bg.jpg");
+ background-size: cover;
 }
-.brds{
-  border-top: $bot;
-  border-bottom: $bot;
-}
+
 
 //BOX EDIT
 .edit-box{
@@ -162,23 +160,19 @@ $boxspz: 10px;
 .delete-box:hover{
   background-color: #171e25;
 }
-.title-box{
-  border: $bot;
-  padding: $boxspx;
+
+.bx-title-name{
+  font-size: 2.6em;
+  color: #fff;
+  height: 150px;
+  padding-top: 40px;
+   background: rgba(44, 125, 206, 0.3);
 }
-.title-box-name{
-  border: $bot;
-  padding: $boxspx;
-  font-weight: 700;
-}
-.url-box{
-  border: $bot;
-  padding: $boxspx;
-}
-.url-box-name{
-  border: $bot;
-  padding: $boxspx;
-  font-weight: 700;
+.bx-url-name{
+  background: #212121;
+  padding: 10px;
+  color: $grey;
+  font-size: 1.0em;
 }
 .creat{
   font-size: 1.4em;
