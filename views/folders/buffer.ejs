@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href='/stylesheets/style.css' />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  </head>
+  <body class="bg">
+  <p>User Id: <%= user_id %></p>
+  <a href="/user">Profile</a>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 spa text-center">
+          <!-- create a new folder -->
+          <form action='/folders/new' method='POST'>
+            <label>title:</label>
+            <input type="text" name="folder_title" />
+            <input type="hidden" name="user_id" value="<%= user_id %>" />
+            <input type="submit" value="Create folder" />
+          </form>
+          <br />
+          <% folders.forEach(function(folder) { %>
+          <div class="col-md-12 spb">
+            <a  class="blz" href="<%= '/folders/' + folders.id%>"><%= folder.title %></a>
+            <div class="col-md-12 spa">
+              <ol class="col-md-12">
+                  <% bookmarks.forEach(function(bookmark) {
+                      if (parseInt(bookmark.folder_id) === parseInt(folder.id)) {
+                  %>
+                        <li>title: <%= bookmark.title %><br />url: <%= bookmark.url %></li>
+                        <br />
+                <% }}) %>
+              </ol>
+              <!-- create a new bookmark -->
+              <form action='/folders/bookmarks/new' method='POST'>
+                <input type="hidden" name="folder_id" value="<%= folder.id %>" />
+                <input type="hidden" name="folder_title" value="<%= folder.title %>" />
+                <input type="submit" value="Create bookmark" />
+              </form>
+              <br />
+            </div>
+          <% }) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+
