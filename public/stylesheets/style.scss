@@ -199,6 +199,48 @@ $boxspz: 10px;
   margin-bottom: 15px;
 }
 
+//BOX EDIT
+.edit-box{
+  border: $bot;
+  background-color: $blue-medium;
+  color: #fff;
+  padding: $boxspz;
+  font-size: 18px;
+}
+.edit-box:hover{
+  background-color: #1c5377;
+}
+.delete-box{
+  border: $bot;
+  background-color: $blue-dark;
+  color: #fff;
+  padding: $boxspz;
+  font-size: 18px;
+}
+.delete-box:hover{
+  background-color: #171e25;
+}
+
+.bx-title-name{
+  font-size: 2.6em;
+  color: #fff;
+  height: 150px;
+  padding-top: 40px;
+   background: rgba(0,0, 0, 0.6);
+}
+.bx-url-name{
+  background: #212121;
+  padding: 10px;
+  color: $grey;
+  font-size: 1.0em;
+}
+.creat{
+  font-size: 1.4em;
+  margin-top: 10px;
+  color: $white;
+  margin-bottom: 15px;
+}
+
 // form
 
 #custom-search-form {
