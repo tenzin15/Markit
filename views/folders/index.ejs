@@ -16,7 +16,7 @@
             <div class="col-md-2 sidebar-title text-center">Markit</div>
             <div class="col-md-10 top-right">
               <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-6">
                   <form id="custom-search-form" class="form-search form-horizontal pull-left">
                     <input type="text"  placeholder="Search">
                   </form>
@@ -28,14 +28,14 @@
         <div class="col-md-2 col-sm-3 col-xs-3 left-side">
           <div class="row text-center">
             <div class="col-md-12 usr-name"><i class="fa fa-user-circle spa" aria-hidden="true"></i><a href="/user"><%= user_firstName %></a></div>
-            <form class="col-md-12" action='/folders/new' method='POST'>
-              <input type="text" name="folder_title" />
-              <input type="hidden" name="user_id" value="<%= user_id %>" />
-              <input class="btn btn-primary alg " type="submit" value="Add Folder">
-                <i class="fa fa-plus-square spb" aria-hidden="true"></i>
-              </input>
-            </form>
-
+            <div class="col-md-12">
+              <div class="creat">Create folder</div>
+              <form  action='/folders/new' method='POST'>
+                <input type="text" name="folder_title" />
+                <input type="hidden" name="user_id" value="<%= user_id %>" />
+                <input class="btn btn-primary alg " type="submit" value="Add Folder">
+              </form>
+            </div>
             <div class="col-md-12 folder alz"><i class="fa fa-folder-open-o spa" aria-hidden="true"></i>folders</div>
             <div class="col-md-12">
               <div class="row folder-name">
@@ -57,28 +57,31 @@
             </div>
           </div>
         </div>
-        <% folders.forEach(function(folder) { %>
+
         <div class="col-md-10 col-sm-9 col-xs-9 right-side">
           <div class="row">
-            <div class="col-md-6">
-              <div class="boxz"><i class="fa fa-pencil spa" aria-hidden="true"></i>
-                <i class="fa fa-trash-o" aria-hidden="true"></i></div>
-                <ol class="col-md-12">
-                    <% bookmarks.forEach(function(bookmark) {
-                        if (parseInt(bookmark.folder_id) === parseInt(folder.id)) { %>
-                          <li>title: <%= bookmark.title %><br />url: <%= bookmark.url %></li>
-                          <br />
-                  <% }}) %>
-                </ol>
+<% folders.forEach(function(folder) { %>
+  <% bookmarks.forEach(function(bookmark) {
+      if (parseInt(bookmark.folder_id) === parseInt(folder.id)) { %>
+            <div class="col-md-3">
+              <div class="boxz">
+                <div class="row">
+                  <div class="col-md-12 text-center bx-title-name"><%= bookmark.title %> </div>
+                  <div class="col-md-12 text-center bx-url-name "><%= bookmark.url %></div>
+                  <div class="col-md-6 text-center edit-box"><i class="fa fa-pencil spa" aria-hidden="true"></i></div>
+                  <div class="col-md-6 text-center delete-box"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
+                </div>
+              </div>
                 <!-- create a new bookmark -->
                 <form action='/folders/bookmarks/new' method='POST'>
                   <input type="hidden" name="folder_id" value="<%= folder.id %>" />
                   <input type="hidden" name="folder_title" value="<%= folder.title %>" />
                   <input type="submit" value="Create bookmark" />
                 </form>
-                <br />
               </div>
-              <% }) %>
+                  <% }}) %>
+<% }) %>
+
             </div>
           </div>
         </div>

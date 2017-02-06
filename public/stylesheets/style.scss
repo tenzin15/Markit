@@ -1,5 +1,5 @@
-body {
-   overflow-x: hidden;
+.html, body {
+   height:100%;
 }
 /* Toggle Styles */
 
@@ -8,7 +8,7 @@ body {
 
 // FONTS
 $title: 2.3em;
-$usrn: 1.8em;
+$usrn: 1.6em;
 $small: 1.2em;
 //padding
 $space1: 30px;
@@ -30,6 +30,11 @@ $bot: solid 1px #e5e5e5;
 $sidebar-space: 20px;
 // ICON space
 $rightspc: 10px;
+// box title and url space
+$boxspx: 15px;
+// BOX icons
+$boxspz: 10px;
+//img
 
 // Delete padding 15px left and right
 .container-fluid{
@@ -44,7 +49,7 @@ $rightspc: 10px;
   -webkit-box-shadow: 10px 0px 5px 0px rgba(201,197,201,1);
   -moz-box-shadow: 10px 0px 5px 0px rgba(201,197,201,1);
   box-shadow: 10px 0px 5px 0px rgba(201,197,201,1);
-  padding-bottom: 290px;
+  height: 100vh;
   z-index: 100;
 }
 .begin{
@@ -57,8 +62,9 @@ $rightspc: 10px;
 .right-side{
   background-color: $grey;
   overflow: hidden;
-  padding-bottom: 700px;
+  height: 100vh;
   z-index: 1;
+  padding-top: 40px;
 }
 //App title name
 .sidebar-title{
@@ -76,6 +82,16 @@ $rightspc: 10px;
   color: $white;
   padding: $space1;
   border-bottom: $bot;
+}
+.usr-name a{
+  font-size: $usrn;
+  color: $white;
+  text-decoration: none;
+}
+.usr-name a:hover{
+  font-size: $usrn;
+  color: $blue-dark;
+  text-decoration: none;
 }
 //button space top
 .alg{
@@ -116,20 +132,64 @@ $rightspc: 10px;
 
 .boxz{
  border: $bot;
- height: 100px;
  width: 100%;
+ overflow: hidden;
+ background-image: url("../img/bg.jpg");
+ background-size: cover;
 }
 
+
+//BOX EDIT
+.edit-box{
+  border: $bot;
+  background-color: $blue-medium;
+  color: #fff;
+  padding: $boxspz;
+  font-size: 18px;
+}
+.edit-box:hover{
+  background-color: #1c5377;
+}
+.delete-box{
+  border: $bot;
+  background-color: $blue-dark;
+  color: #fff;
+  padding: $boxspz;
+  font-size: 18px;
+}
+.delete-box:hover{
+  background-color: #171e25;
+}
+
+.bx-title-name{
+  font-size: 2.6em;
+  color: #fff;
+  height: 150px;
+  padding-top: 40px;
+   background: rgba(0,0, 0, 0.6);
+}
+.bx-url-name{
+  background: #212121;
+  padding: 10px;
+  color: $grey;
+  font-size: 1.0em;
+}
+.creat{
+  font-size: 1.4em;
+  margin-top: 10px;
+  color: $white;
+  margin-bottom: 15px;
+}
 
 // form
 
 #custom-search-form {
-
+  width: 100%;
  }
  input[type=text], select {
-    width: 350px;
+    width: 100%;
     padding: 12px 20px;
-    margin: 8px 0;
+    margin: 8px 7px;;
     display: inline-block;
     border: 1px solid $blue;
     border-radius: 4px;
