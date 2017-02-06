@@ -1,5 +1,5 @@
-body {
-  overflow-x: hidden; }
+.html, body {
+  height: 100%; }
 
 /* Toggle Styles */
 .container-fluid {
@@ -10,7 +10,7 @@ body {
   -webkit-box-shadow: 10px 0px 5px 0px #c9c5c9;
   -moz-box-shadow: 10px 0px 5px 0px #c9c5c9;
   box-shadow: 10px 0px 5px 0px #c9c5c9;
-  padding-bottom: 290px;
+  height: 100vh;
   z-index: 100; }
 
 .begin {
@@ -22,7 +22,7 @@ body {
 .right-side {
   background-color: #f1f1f1;
   overflow: hidden;
-  padding-bottom: 700px;
+  height: 100vh;
   z-index: 1;
   padding-top: 40px; }
 
@@ -113,7 +113,7 @@ body {
   color: #fff;
   height: 150px;
   padding-top: 40px;
-  background: rgba(44, 125, 206, 0.3); }
+  background: rgba(0, 0, 0, 0.6); }
 
 .bx-url-name {
   background: #212121;
