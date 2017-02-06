@@ -40,7 +40,15 @@
 <% folders.forEach(function(folder) { %>
             <div class="col-md-12">
               <div class="row folder-name">
-                <div class="col-md-9 text-right"><%= folder.title%></div>
+
+                <div class="col-md-9 text-right">
+                    <form action='/folders/bookmarks' method='POST'>
+                      <input type="hidden" name="folder_id" value="<%= folder.id %>" />
+                      <input type="hidden" name="folder_title" value="<%= folder.title %>" />
+                      <input type="submit" value="<%= folder.title %>" />
+                    </form>
+                </div>
+
                 <div class="col-md-3 text-right"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
               </div>
             </div>
