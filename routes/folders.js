@@ -15,21 +15,12 @@ router.get('/', function(req, res, next) {
         title: 'folders',
         folders: folders,
         user_id: req.user.dataValues.id,
+        user_firstName: req.user.dataValues.firstName,
         bookmarks: bookmarks
       });
     });
   });
 });
-
-// creates a page that allows user to add a movie to the database
-// router.get('/new', function(req, res, next) {
-//   models.Folder.findAll({ where: { user_id: req.user.dataValues.id } }).then(function(folders) {
-//     res.render('folders/new', {
-//       user: req.user.dataValues,
-//       folders: folders
-//     });
-//   });
-// });
 
 // create a new folder
 router.post('/new', function(req, res, next) {
@@ -66,6 +57,18 @@ router.post('/new/bookmark', function(req, res, next) {
     res.redirect('/folders')
   });
 });
+
+
+// creates a page that allows user to add a movie to the database
+// router.get('/new', function(req, res, next) {
+//   models.Folder.findAll({ where: { user_id: req.user.dataValues.id } }).then(function(folders) {
+//     res.render('folders/new', {
+//       user: req.user.dataValues,
+//       folders: folders
+//     });
+//   });
+// });
+
 
 // creates route to folders/id# that renders movie titles and synopsis based on whichever movie id was requested
 router.get('/:id', function(req, res, next) {

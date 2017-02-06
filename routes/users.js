@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/', authHelpers.loginRequired, (req, res, next) => {
   // once logged in succesfully,
   // render views/user/index.ejs by passing the user info as json
-  res.render('user/index', {
+  res.render('users/index', {
     user: req.user.dataValues
   });
 });
