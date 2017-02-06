@@ -1,0 +1,35 @@
+<% include ../partials/head.ejs %>
+  <body>
+    <% include ../partials/header.ejs %>
+    <main>
+      <div class="container white">
+        <form action="/auth/register" method="post">
+          <div>
+            <label>Username:</label>
+            <input type="text" name="username"/>
+          </div>
+          <div>
+            <label>Password:</label>
+            <input type="password" name="password"/>
+          </div>
+          <div>
+            <label>First Name:</label>
+            <input type="text" name="firstName"/>
+          </div>
+          <div>
+            <label>Last Name:</label>
+            <input type="text" name="lastName"/>
+          </div>
+          <div>
+            <label>Email:</label>
+            <input type="text" name="email"/>
+          </div>
+          <div>
+            <input type="submit" class="btn-large waves-effect waves-light orange left" value="Register" />
+          </div>
+        </form>
+      </div>
+    </main>
+    <% include ../partials/footer.ejs %>
+  </body>
+</html>
