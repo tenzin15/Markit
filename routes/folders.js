@@ -45,6 +45,11 @@ router.post('/bookmarks/new', function(req, res, next) {
   });
 });
 
+// creates route to display all folders in folders database on the dom.
+router.post('/bookmarks', function(req, res, next) {
+  res.send(req.body.folder_id + req.body.folder_title);
+});
+
 // create a new bookmark
 router.post('/new/bookmark', function(req, res, next) {
   models.Bookmarks.create({
@@ -58,7 +63,17 @@ router.post('/new/bookmark', function(req, res, next) {
   });
 });
 
+router.delete('/bookmark/:id', function(req, res, next) {
+  models.Bookmarks.destroy({
+    where: { id: req.body.bookmark_id }
+  }).then(function(movie) {
+    res.redirect('/folders');
+  });
+});
 
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 // creates a page that allows user to add a movie to the database
 // router.get('/new', function(req, res, next) {
 //   models.Folder.findAll({ where: { user_id: req.user.dataValues.id } }).then(function(folders) {

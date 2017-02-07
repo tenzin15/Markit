@@ -14,18 +14,20 @@
         <div class="col-md-12 begin">
           <div class="row">
             <div class="col-md-2 sidebar-title text-center">Markit</div>
-            <div class="col-md-10 top-right">
+            <div class="col-md-8 top-right">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-7">
                   <form id="custom-search-form" class="form-search form-horizontal pull-left">
                     <input type="text"  placeholder="Search">
                   </form>
                 </div>
               </div>
             </div>
+            <div class="col-md-2 llz text-right"><a href="menu-toggle" class="btn btn-success" id="menu-toggle">Toggle </a></div>
           </div>
         </div>
-        <div class="col-md-2 col-sm-3 col-xs-3 left-side">
+        <div id="lwrapper" class="col-md-2 left-side">
+          <div class="left-fixedz">
           <div class="row text-center">
             <div class="col-md-12 usr-name"><i class="fa fa-user-circle spa" aria-hidden="true"></i><a href="/user"><%= user_firstName %></a></div>
             <div class="col-md-12">
@@ -37,32 +39,58 @@
               </form>
             </div>
             <div class="col-md-12 folder alz"><i class="fa fa-folder-open-o spa" aria-hidden="true"></i>folders</div>
+          <% folders.forEach(function(folder) { %>
             <div class="col-md-12">
               <div class="row folder-name">
-                <div class="col-md-9 text-right">Mahabharata</div>
+
+                <div class="col-md-9 text-right">
+                    <form action='/folders/bookmarks' method='POST'>
+                      <input type="hidden" name="folder_id" value="<%= folder.id %>" />
+                      <input type="hidden" name="folder_title" value="<%= folder.title %>" />
+                      <input type="submit" value="<%= folder.title %>" />
+                    </form>
+                </div>
+
                 <div class="col-md-3 text-right"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
               </div>
             </div>
-            <div class="col-md-12">
-              <div class="row folder-name">
-                <div class="col-md-9 text-right">JavaScript</div>
-                <div class="col-md-3 text-right"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="row folder-name">
-                <div class="col-md-9 text-right">I love react</div>
-                <div class="col-md-3 text-right"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
-              </div>
-            </div>
+<% }) %>
           </div>
         </div>
+        </div>
 
-        <div class="col-md-10 col-sm-9 col-xs-9 right-side">
+        <div id="rwrapper" class="col-md-10 right-side">
+          <div class="left-fixedz">
           <div class="row">
-<% folders.forEach(function(folder) { %>
-  <% bookmarks.forEach(function(bookmark) {
-      if (parseInt(bookmark.folder_id) === parseInt(folder.id)) { %>
+            <form id="custom-search-form" class="form-search form-horizontal pull-right">
+            <div class="col-md-7">
+                <input type="text"  placeholder="Enter Bookmark URL">
+
+            </div>
+            <div class="col-md-3 select-space">
+                  <% if (folders.length < 1) { %>
+                  <select class="selectpicker btn-primary">
+                      <option>Add Folder</option>
+                  </select>
+                  <% } else { %>
+
+                  <select class="selectpicker btn-primary">
+                  <% folders.forEach(function(folder) {
+                      if (parseInt(folder.user_id) === parseInt(user_id)) { %>
+                        <option><%= folder.title %></option>
+                      <% } %>
+                 <% }) %>
+                  <% } %>
+
+                  </select>
+                </div>
+                <div class="col-md-2">
+                  <input class="btn btn-primary" type="submit" value="Add Bookmark">
+                </div>
+                </form>
+<% folders.forEach(function(folder) {
+    bookmarks.forEach(function(bookmark) {
+       if (parseInt(bookmark.folder_id) === parseInt(folder.id)) { %>
             <div class="col-md-3">
               <div class="boxz">
                 <div class="row">
@@ -70,9 +98,14 @@
                   <div class="col-md-12 text-center bx-url-name "><%= bookmark.url %></div>
                   <div class="col-md-6 text-center edit-box"><i class="fa fa-pencil spa" aria-hidden="true"></i></div>
                   <div class="col-md-6 text-center delete-box"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
+                  <form action="<%= '/folders/bookmark/' + bookmark.id + '?_method=DELETE' %>" method="POST">
+                    <input type="hidden" name="bookmark_id" value="<%= bookmark.id %>" />
+                    <input type="submit" value="delete">
+                  </form>
+
                 </div>
               </div>
-                <!-- create a new bookmark -->
+              <!-- create a new bookmark -->
                 <form action='/folders/bookmarks/new' method='POST'>
                   <input type="hidden" name="folder_id" value="<%= folder.id %>" />
                   <input type="hidden" name="folder_title" value="<%= folder.title %>" />
@@ -84,12 +117,22 @@
 
             </div>
           </div>
+          </div>
         </div>
       </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+    <!-- Menu Toggle Script -->
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#lwrapper").toggleClass("toggled");
+        $('#rwrapper').toggleClass("col-md-12").toggleClass("col-md-10");
+
+    });
+    </script>
 
   </body>
 </html>
