@@ -221,4 +221,10 @@ input[type="submit"] {
 .baaa {
   z-index: 100000 !important; }
 
+.zzz {
+  margin-right: 10px;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 10px; }
+
 /*# sourceMappingURL=style.css.map */
