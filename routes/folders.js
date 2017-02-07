@@ -16,7 +16,8 @@ router.get('/', function(req, res, next) {
         folders: folders,
         user_id: req.user.dataValues.id,
         user_firstName: req.user.dataValues.firstName,
-        bookmarks: bookmarks
+        bookmarks: bookmarks,
+        folder_id: folders[0].id
       });
     });
   });
@@ -45,10 +46,26 @@ router.post('/bookmarks/new', function(req, res, next) {
   });
 });
 
-// creates route to display all folders in folders database on the dom.
+// only show the bookmarks that belongs to the this folder
 router.post('/bookmarks', function(req, res, next) {
-  res.send(req.body.folder_id + req.body.folder_title);
-});
+    // res.send(req.body.folder_id + req.body.folder_title + req.body.folder_user_id);
+    models.Folder.findAll({ where: { user_id: req.user.dataValues.id } })
+    .then(function(folders) {
+      models.Bookmarks.findAll({ where: { user_id: req.user.dataValues.id } })
+      .then(function(bookmarks) {
+        res.render('folders/index', {
+          title: 'folders',
+          folders: folders,
+          user_id: req.user.dataValues.id,
+          user_firstName: req.user.dataValues.firstName,
+          bookmarks: bookmarks,
+          folder_id: req.body.folder_id,
+          folder_title: req.body.folder_title,
+          folder_user_id: req.body.folder_user_id
+        });
+      });
+    });
+  });
 
 // create a new bookmark
 router.post('/new/bookmark', function(req, res, next) {
@@ -59,7 +76,7 @@ router.post('/new/bookmark', function(req, res, next) {
     folder_id: req.body.folder_id,
     folder_title: req.body.folder_title
   }).then(function() {
-    res.redirect('/folders')
+    res.redirect('/folders');
   });
 });
 
