@@ -53,7 +53,9 @@
                 </div>
 
                 <div class="col-md-3 text-right">
-                  <form action="<%= '/folders/bookmark/' + folder.id + '?_method=DELETE' %>" method="POST">
+                  <form action="<%= '/folders/' + folder.id + '?_method=DELETE' %>" method="POST">
+                    <input type="hidden" name="folder_id" value="<%= folder.id %>" />
+                    <input type="hidden" name="folder_title" value="<%= folder.title %>" />
                     <input type="submit" class="delete-iconz" value="&#xf014;" >
                   </form>
                 </div>

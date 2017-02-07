@@ -142,9 +142,10 @@ router.delete('/bookmark/:id', function(req, res, next) {
 });
 
 router.delete('/:id', function(req, res, next) {
-  models.Bookmarks.destroy({
-    where: { id: req.body.folder_id }
-  }).then(function(movie) {
+  models.Folder.destroy({
+      where: { id: req.body.folder_id }
+  })
+  .then(function() {
     // res.redirect('/folders');
     models.Folder.findAll({ where: { user_id: req.user.dataValues.id } })
     .then(function(folders) {
