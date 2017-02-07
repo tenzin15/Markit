@@ -62,11 +62,22 @@
         <div id="rwrapper" class="col-md-10 right-side">
           <div class="left-fixedz">
           <div class="row">
+            <form id="custom-search-form" class="form-search form-horizontal pull-right">
             <div class="col-md-7">
-              <form id="custom-search-form" class="form-search form-horizontal pull-right">
                 <input type="text"  placeholder="Enter Bookmark URL">
-              </form>
+
             </div>
+            <div class="col-md-3 select-space">
+                  <select class="selectpicker btn-primary">
+                  <option>Mahabharata</option>
+                  <option>JavaScript</option>
+                  <option>I love react</option>
+                  </select>
+                </div>
+                <div class="col-md-2">
+                  <input class="btn btn-primary" type="submit" value="Add Bookmark">
+                </div>
+                </form>
 <% folders.forEach(function(folder) {
     bookmarks.forEach(function(bookmark) {
        if (parseInt(bookmark.folder_id) === parseInt(folder.id)) { %>
