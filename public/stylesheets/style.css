@@ -208,4 +208,11 @@ input[type=text], select {
   border-radius: 4px;
   cursor: pointer; }
 
+input[type="submit"] {
+  font-family: FontAwesome; }
+
+.delete-iconz {
+  background-color: transparent;
+  border: 0; }
+
 /*# sourceMappingURL=style.css.map */

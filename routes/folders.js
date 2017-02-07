@@ -63,6 +63,14 @@ router.post('/new/bookmark', function(req, res, next) {
   });
 });
 
+//EDIT
+router.get('/bookmark/:id/edit', function(req, res, next) {
+  models.Bookmarks.findById(req.body.bookmark_id ).then(function(bookmark) {
+    res.render('folders/', { bookmark: bookmark });
+  });
+});
+
+
 router.delete('/bookmark/:id', function(req, res, next) {
   models.Bookmarks.destroy({
     where: { id: req.body.bookmark_id }
