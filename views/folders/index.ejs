@@ -34,9 +34,9 @@
             <div class="col-md-12">
               <div class="creat">Create folder</div>
               <form  action='/folders/new' method='POST'>
-                <input type="text" name="folder_title" />
+                <input type="text" name="folder_title" required />
                 <input type="hidden" name="user_id" value="<%= user_id %>" />
-                <input class="btn btn-primary alg " type="submit" value="Add Folder">
+                <input class="btn btn-primary alg" type="submit" value="Add Folder">
               </form>
             </div>
             <div class="col-md-12 folder alz"><i class="fa fa-folder-open-o spa" aria-hidden="true"></i>folders</div>
@@ -72,10 +72,12 @@
           <div class="row">
             <div class="col-md-12 text-center">
             </div>
-            <form action='/folders/bookmarks/new' method='POST'
+            <form action='/folders/new/bookmark' method='POST'
                   id="custom-search-form" class="form-search form-horizontal pull-right">
               <div class="col-md-7">
-                  <input type="text"  placeholder="Enter Bookmark URL">
+                  <input type="hidden" name="folder_title" value="<%= folder_title %>" />
+                  <input type="hidden" name="folder_id" value="<%= folder_id %>" />
+                  <input type="text"  placeholder="Enter Bookmark URL" name="enterBookmarkUrl" value="" required>
               </div>
               <div class="col-md-2">
                   <input class="btn btn-primary" type="submit" value="Add Bookmark">
@@ -148,12 +150,6 @@
 
                 </div>
               </div>
-              <!-- create a new bookmark -->
-                <form action='/folders/bookmarks/new' method='POST'>
-                  <input type="hidden" name="folder_id" value="<%= folder.id %>" />
-                  <input type="hidden" name="folder_title" value="<%= folder.title %>" />
-                  <input type="submit" value="Create bookmark" />
-                </form>
               </div>
         <% }})} %>
 <% }) %>
