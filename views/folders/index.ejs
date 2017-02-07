@@ -52,7 +52,11 @@
                     </form>
                 </div>
 
-                <div class="col-md-3 text-right"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
+                <div class="col-md-3 text-right">
+                  <form action="<%= '/folders/bookmark/' + folder.id + '?_method=DELETE' %>" method="POST">
+                    <input type="submit" class="delete-iconz" value="&#xf014;" >
+                  </form>
+                </div>
               </div>
             </div>
           <% }) %>

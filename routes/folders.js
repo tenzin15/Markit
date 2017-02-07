@@ -141,7 +141,28 @@ router.delete('/bookmark/:id', function(req, res, next) {
   });
 });
 
-
+router.delete('/:id', function(req, res, next) {
+  models.Bookmarks.destroy({
+    where: { id: req.body.folder_id }
+  }).then(function(movie) {
+    // res.redirect('/folders');
+    models.Folder.findAll({ where: { user_id: req.user.dataValues.id } })
+    .then(function(folders) {
+      models.Bookmarks.findAll({ where: { user_id: req.user.dataValues.id } })
+      .then(function(bookmarks) {
+        res.render('folders/index', {
+          title: 'folders',
+          folders: folders,
+          user_id: req.user.dataValues.id,
+          user_firstName: req.user.dataValues.firstName,
+          bookmarks: bookmarks,
+          folder_id: req.body.folder_id,
+          folder_title: req.body.folder_title
+        });
+      });
+    });
+  });
+});
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 // creates a page that allows user to add a movie to the database
