@@ -9,6 +9,16 @@ var authHelpers = require('../auth/auth-helpers');
 router.get('/', function(req, res, next) {
   models.Folder.findAll({ where: { user_id: req.user.dataValues.id } })
   .then(function(folders) {
+    let first_folder_id = null;
+    let first_folder_title = '';
+    if (folders.length < 1) {
+      first_folder_id = 89797947; // random id that can't match folder id
+      first_folder_title = 'no folder title exist';
+    }
+    else {
+      first_folder_id = folders[0].id;
+      first_folder_title = folders[0].title;
+    }
     models.Bookmarks.findAll({ where: { user_id: req.user.dataValues.id } })
     .then(function(bookmarks) {
       res.render('folders/index', {
@@ -17,8 +27,8 @@ router.get('/', function(req, res, next) {
         user_id: req.user.dataValues.id,
         user_firstName: req.user.dataValues.firstName,
         bookmarks: bookmarks,
-        folder_id: folders[0].id,
-        folder_title: folders[0].title
+        folder_id: first_folder_id,
+        folder_title: first_folder_title
       });
     });
   });
@@ -47,6 +57,8 @@ router.post('/bookmarks/new', function(req, res, next) {
   });
 });
 
+
+
 // only show the bookmarks that belongs to the this folder
 router.post('/bookmarks', function(req, res, next) {
     // res.send(req.body.folder_id + req.body.folder_title + req.body.folder_user_id);
@@ -71,15 +83,44 @@ router.post('/bookmarks', function(req, res, next) {
 // create a new bookmark
 router.post('/new/bookmark', function(req, res, next) {
   models.Bookmarks.create({
-    title: req.body.title,
-    url: req.body.url,
-    user_id: req.body.user_id,
+    title: 'Add Title',
+    url: req.body.enterBookmarkUrl,
+    user_id: req.user.dataValues.id,
     folder_id: req.body.folder_id,
     folder_title: req.body.folder_title
-  }).then(function() {
-    res.redirect('/folders');
+  })
+  .then(function() {
+    // res.redirect('/folders');
+    models.Folder.findAll({ where: { user_id: req.user.dataValues.id } })
+    .then(function(folders) {
+      models.Bookmarks.findAll({ where: { user_id: req.user.dataValues.id } })
+      .then(function(bookmarks) {
+        res.render('folders/index', {
+          title: 'folders',
+          folders: folders,
+          user_id: req.user.dataValues.id,
+          user_firstName: req.user.dataValues.firstName,
+          bookmarks: bookmarks,
+          folder_id: req.body.folder_id,
+          folder_title: req.body.folder_title
+        });
+      });
+    });
   });
 });
+
+// // create a new bookmark
+// router.post('/new/bookmark', function(req, res, next) {
+//   models.Bookmarks.create({
+//     title: req.body.title,
+//     url: req.body.url,
+//     user_id: req.body.user_id,
+//     folder_id: req.body.folder_id,
+//     folder_title: req.body.folder_title
+//   }).then(function() {
+//     res.redirect('/folders');
+//   });
+// });
 
 //EDIT
 
@@ -176,7 +217,6 @@ router.delete('/:id', function(req, res, next) {
 //   });
 // });
 
-//
 // // creates route to folders/id# that renders movie titles and synopsis based on whichever movie id was requested
 // router.get('/:id', function(req, res, next) {
 //   models.Movie.findById(req.params.id).then(function(folders) {
@@ -187,7 +227,7 @@ router.delete('/:id', function(req, res, next) {
 //     });
 //   });
 // });
-//
+
 // // GET /folders/:id/edit: this should bring the user to a form to edit the info. of the movie corresponding to the id.
 // // Don't worry about allowing the user to edit the director for now, we can't be sure that whomever is in charge of
 // // that part of the app has completed their work
@@ -198,7 +238,7 @@ router.delete('/:id', function(req, res, next) {
 //     });
 //   });
 // });
-//
+
 // // posts edited movie info submitted (updates) don't forget method override npm install and then add to app.js
 // router.put('/:id', function(req, res, next) {
 //   models.Movie.update({
@@ -209,7 +249,7 @@ router.delete('/:id', function(req, res, next) {
 //     res.redirect('/folders/' + req.params.id);
 //   });
 // });
-//
+
 // router.delete('/:id', function(req, res, next) {
 //   models.Movie.destroy({
 //     where: { id: req.params.id }
