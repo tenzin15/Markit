@@ -138,15 +138,23 @@ $boxspz: 10px;
   color: $red;
 }
 
-
 .boxz{
- border: $bot;
- width: 100%;
- overflow: hidden;
- background-image: url("../img/bg.jpg");
- background-size: cover;
- margin: 30px 0;
+   border: $bot;
+   width: 100%;
+   overflow: hidden;
+   background-image: url("../img/bg.jpg");
+   background-size: cover;
+   margin: 30px 0;
 }
+.boxzForUserProfile {
+  border: 0;
+  color: white!important;
+  width: 100%;
+  overflow: hidden;
+  background-size: cover;
+  margin: 30px 0;
+}
+
 //toggled
 
 .toggled{
@@ -268,4 +276,11 @@ $boxspz: 10px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+input[type="submit"] {
+    font-family: FontAwesome;
+}
+.delete-iconz{
+  background-color: transparent;
+  border: 0;
 }

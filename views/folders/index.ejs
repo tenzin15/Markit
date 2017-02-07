@@ -30,6 +30,7 @@
           <div class="left-fixedz">
           <div class="row text-center">
             <div class="col-md-12 usr-name"><i class="fa fa-user-circle spa" aria-hidden="true"></i><a href="/user"><%= user_firstName %></a></div>
+            <!-- <div class="col-md-12 usr-name"><i class="fa fa-star spa" aria-hidden="true"></i>Favorites</div> -->
             <div class="col-md-12">
               <div class="creat">Create folder</div>
               <form  action='/folders/new' method='POST'>
@@ -42,7 +43,6 @@
           <% folders.forEach(function(folder) { %>
             <div class="col-md-12">
               <div class="row folder-name">
-
                 <div class="col-md-9 text-right">
                     <form action='/folders/bookmarks' method='POST'>
                       <input type="hidden" name="folder_id" value="<%= folder.id %>" />
@@ -96,8 +96,24 @@
                 <div class="row">
                   <div class="col-md-12 text-center bx-title-name"><%= bookmark.title %> </div>
                   <div class="col-md-12 text-center bx-url-name "><%= bookmark.url %></div>
-                  <div class="col-md-6 text-center edit-box"><i class="fa fa-pencil spa" aria-hidden="true"></i></div>
-                  <div class="col-md-6 text-center delete-box"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
+                  <div class="col-md-6 text-center edit-box">
+                    <i class="fa fa-pencil spa" aria-hidden="true">
+                      <!-- Edit -->
+
+                      <a href="<%= '/folders/' + bookmark.id %>">Edit</a>
+
+                      <!-- End edit -->
+                    </i></div>
+
+
+                  <div class="col-md-6 text-center delete-box">
+                    <form action="<%= '/folders/bookmark/' + bookmark.id + '?_method=DELETE' %>" method="POST">
+                      <input type="hidden" name="bookmark_id" value="<%= bookmark.id %>" />
+                      <input type="submit" class="delete-iconz" value="&#xf014;" >
+                    </form>
+                  </div>
+
+
                 </div>
               </div>
               <!-- create a new bookmark -->

@@ -97,6 +97,14 @@
   background-size: cover;
   margin: 30px 0; }
 
+.boxzForUserProfile {
+  border: 0;
+  color: white !important;
+  width: 100%;
+  overflow: hidden;
+  background-size: cover;
+  margin: 30px 0; }
+
 .toggled {
   display: none; }
 
@@ -207,5 +215,12 @@ input[type=text], select {
   border: none;
   border-radius: 4px;
   cursor: pointer; }
+
+input[type="submit"] {
+  font-family: FontAwesome; }
+
+.delete-iconz {
+  background-color: transparent;
+  border: 0; }
 
 /*# sourceMappingURL=style.css.map */
