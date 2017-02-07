@@ -5,7 +5,8 @@ module.exports = function(sequelize, DataTypes) {
     url: DataTypes.STRING,
     user_id: DataTypes.BIGINT,
     folder_title: DataTypes.STRING,
-    folder_id: DataTypes.BIGINT
+    folder_id: DataTypes.STRING,
+    favorite: DataTypes.BOOLEAN
   }, {
     classMethods: {
       associate: function(models) {
