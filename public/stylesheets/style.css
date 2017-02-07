@@ -11,10 +11,6 @@
   -moz-box-shadow: 10px 0px 5px 0px #c9c5c9;
   box-shadow: 10px 0px 5px 0px #c9c5c9;
   height: 100vh;
-<<<<<<< HEAD
-=======
-/*  z-index: 100;*/
->>>>>>> 900eb9a4f9dabdb721fa20e8a695b751da80c900
   padding-left: 0; }
 
 .left-fixedz {
@@ -31,12 +27,7 @@
   background-color: #f1f1f1;
   overflow: hidden;
   height: 100vh;
-<<<<<<< HEAD
   padding-top: 15px; }
-=======
- /* z-index: 1;
-*/  padding-top: 15px; }
->>>>>>> 900eb9a4f9dabdb721fa20e8a695b751da80c900
 
 .sidebar-title {
   font-size: 2.3em;
@@ -221,6 +212,11 @@ input[type="submit"] {
 .delete-iconz {
   background-color: transparent;
   border: 0; }
+
+.delete-iconzs {
+  background-color: transparent;
+  border: 0;
+  color: #fff; }
 
 .baaa {
   z-index: 100000 !important; }
