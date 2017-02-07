@@ -11,7 +11,7 @@
   -moz-box-shadow: 10px 0px 5px 0px #c9c5c9;
   box-shadow: 10px 0px 5px 0px #c9c5c9;
   height: 100vh;
-  z-index: 100;
+  z-index: 2;
   padding-left: 0; }
 
 .left-fixedz {
@@ -214,5 +214,8 @@ input[type="submit"] {
 .delete-iconz {
   background-color: transparent;
   border: 0; }
+
+.modal {
+  z-index: 100 !important; }
 
 /*# sourceMappingURL=style.css.map */
