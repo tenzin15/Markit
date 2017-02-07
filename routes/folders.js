@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
     let first_folder_title = '';
     if (folders.length < 1) {
       first_folder_id = 89797947; // random id that can't match folder id
-      first_folder_title = 'no folder title exist';
+      first_folder_title = 'No Folder Added Yet!';
     }
     else {
       first_folder_id = folders[0].id;
