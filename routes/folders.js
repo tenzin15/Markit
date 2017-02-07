@@ -17,7 +17,8 @@ router.get('/', function(req, res, next) {
         user_id: req.user.dataValues.id,
         user_firstName: req.user.dataValues.firstName,
         bookmarks: bookmarks,
-        folder_id: folders[0].id
+        folder_id: folders[0].id,
+        folder_title: folders[0].title
       });
     });
   });
@@ -81,22 +82,88 @@ router.post('/new/bookmark', function(req, res, next) {
 });
 
 //EDIT
-router.get('/bookmark/:id/edit', function(req, res, next) {
-  models.Bookmarks.findById(req.body.bookmark_id ).then(function(bookmark) {
-    res.render('folders/', { bookmark: bookmark });
+
+// router.put('/bookmarks/edit', function(req, res, next) {
+//   models.Bookmarks.update({
+//     title: req.body.title,
+//     url: req.body.url,
+//   }, { where: { id: req.body.bookmark_id } })
+//   .then(function() {
+//     res.redirect('/folders');
+//   });
+// });
+
+router.put('/bookmark/:id', function(req, res, next) {
+  models.Bookmarks.update({
+    title: req.body.bookmark_title,
+    url: req.body.bookmark_url,
+  }, { where: { id: req.body.bookmark_id } })
+  .then(function() {
+    // res.redirect('/folders');
+    models.Folder.findAll({ where: { user_id: req.user.dataValues.id } })
+    .then(function(folders) {
+      models.Bookmarks.findAll({ where: { user_id: req.user.dataValues.id } })
+      .then(function(bookmarks) {
+        res.render('folders/index', {
+          title: 'folders',
+          folders: folders,
+          user_id: req.user.dataValues.id,
+          user_firstName: req.user.dataValues.firstName,
+          bookmarks: bookmarks,
+          folder_id: req.body.folder_id,
+          folder_title: req.body.folder_title
+        });
+      });
+    });
   });
 });
-
 
 router.delete('/bookmark/:id', function(req, res, next) {
   models.Bookmarks.destroy({
     where: { id: req.body.bookmark_id }
   }).then(function(movie) {
-    res.redirect('/folders');
+    // res.redirect('/folders');
+    models.Folder.findAll({ where: { user_id: req.user.dataValues.id } })
+    .then(function(folders) {
+      models.Bookmarks.findAll({ where: { user_id: req.user.dataValues.id } })
+      .then(function(bookmarks) {
+        res.render('folders/index', {
+          title: 'folders',
+          folders: folders,
+          user_id: req.user.dataValues.id,
+          user_firstName: req.user.dataValues.firstName,
+          bookmarks: bookmarks,
+          folder_id: req.body.folder_id,
+          folder_title: req.body.folder_title
+        });
+      });
+    });
   });
 });
 
-
+router.delete('/:id', function(req, res, next) {
+  models.Folder.destroy({
+      where: { id: req.body.folder_id }
+  })
+  .then(function() {
+    // res.redirect('/folders');
+    models.Folder.findAll({ where: { user_id: req.user.dataValues.id } })
+    .then(function(folders) {
+      models.Bookmarks.findAll({ where: { user_id: req.user.dataValues.id } })
+      .then(function(bookmarks) {
+        res.render('folders/index', {
+          title: 'folders',
+          folders: folders,
+          user_id: req.user.dataValues.id,
+          user_firstName: req.user.dataValues.firstName,
+          bookmarks: bookmarks,
+          folder_id: req.body.folder_id,
+          folder_title: req.body.folder_title
+        });
+      });
+    });
+  });
+});
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 // creates a page that allows user to add a movie to the database
@@ -109,46 +176,46 @@ router.delete('/bookmark/:id', function(req, res, next) {
 //   });
 // });
 
-
-// creates route to folders/id# that renders movie titles and synopsis based on whichever movie id was requested
-router.get('/:id', function(req, res, next) {
-  models.Movie.findById(req.params.id).then(function(folders) {
-    res.render('moviesHome', {
-      title: folders.title,
-      folders: folders,
-      synopsis: folders.synopsis
-    });
-  });
-});
-
-// GET /folders/:id/edit: this should bring the user to a form to edit the info. of the movie corresponding to the id.
-// Don't worry about allowing the user to edit the director for now, we can't be sure that whomever is in charge of
-// that part of the app has completed their work
-router.get('/:id/edit', function(req, res, next) {
-  models.Movie.findById(req.params.id).then(function(movie) {
-    res.render('foldersEdit', {
-      movie:movie
-    });
-  });
-});
-
-// posts edited movie info submitted (updates) don't forget method override npm install and then add to app.js
-router.put('/:id', function(req, res, next) {
-  models.Movie.update({
-    title: req.body.title,
-    synopsis: req.body.synopsis
-  }, { where: { id: req.params.id } })
-  .then(function() {
-    res.redirect('/folders/' + req.params.id);
-  });
-});
-
-router.delete('/:id', function(req, res, next) {
-  models.Movie.destroy({
-    where: { id: req.params.id }
-  }).then(function(movie) {
-    res.redirect('/folders');
-  });
-});
+//
+// // creates route to folders/id# that renders movie titles and synopsis based on whichever movie id was requested
+// router.get('/:id', function(req, res, next) {
+//   models.Movie.findById(req.params.id).then(function(folders) {
+//     res.render('moviesHome', {
+//       title: folders.title,
+//       folders: folders,
+//       synopsis: folders.synopsis
+//     });
+//   });
+// });
+//
+// // GET /folders/:id/edit: this should bring the user to a form to edit the info. of the movie corresponding to the id.
+// // Don't worry about allowing the user to edit the director for now, we can't be sure that whomever is in charge of
+// // that part of the app has completed their work
+// router.get('/:id/edit', function(req, res, next) {
+//   models.Movie.findById(req.params.id).then(function(movie) {
+//     res.render('foldersEdit', {
+//       movie:movie
+//     });
+//   });
+// });
+//
+// // posts edited movie info submitted (updates) don't forget method override npm install and then add to app.js
+// router.put('/:id', function(req, res, next) {
+//   models.Movie.update({
+//     title: req.body.title,
+//     synopsis: req.body.synopsis
+//   }, { where: { id: req.params.id } })
+//   .then(function() {
+//     res.redirect('/folders/' + req.params.id);
+//   });
+// });
+//
+// router.delete('/:id', function(req, res, next) {
+//   models.Movie.destroy({
+//     where: { id: req.params.id }
+//   }).then(function(movie) {
+//     res.redirect('/folders');
+//   });
+// });
 
 module.exports = router;
