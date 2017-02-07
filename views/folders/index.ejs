@@ -99,16 +99,44 @@
                   <div class="col-md-6 text-center edit-box">
                     <i class="fa fa-pencil spa" aria-hidden="true"></i>
                       <!-- Edit -->
-
                       <!-- Button trigger modal -->
-                      <!-- Large modal -->
-
-
-                      <!-- Button trigger modal -->
-
-
-                      <!-- End edit -->
+                      <a href=""  data-toggle="modal" data-id="<%= '/folders/' + bookmark.id%>" data-target="#myModal" class="btn btn-primary btn-lg">Edit</a>
                     </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Edit</h4>
+                          </div>
+                          <div class="modal-body">
+                            <div class="row">
+                              <form action="/folders" method="POST">
+                                <div class="col-md-12">
+                                  <div class="form-group">
+                                    <label for="recipient-name" class="control-label">Title:</label>
+                                    <input type="text" name="email" name="bookmark_title" value="<%= bookmark.title %>">
+                                  </div>
+                                </div>
+                                <div class="col-md-12">
+                                  <div class="form-group">
+                                    <label for="recipient-name" class="control-label">Url:</label>
+                                    <input type="text" name="email" value="<%= bookmark.url %>">
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
 
 
                   <div class="col-md-6 text-center delete-box">

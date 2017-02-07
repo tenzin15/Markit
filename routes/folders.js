@@ -65,8 +65,8 @@ router.post('/new/bookmark', function(req, res, next) {
 
 //EDIT
 router.get('/bookmark/:id/edit', function(req, res, next) {
-  models.Bookmarks.findById(req.body.bookmark_id ).then(function(bookmark) {
-    res.render('folders/', { bookmark: bookmark });
+  models.Bookmarks.findById(req.body.bookmark_id ).then(function(bookmarks) {
+    res.render('folders/', { bookmarks: bookmarks});
   });
 });
 
