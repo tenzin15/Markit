@@ -9,6 +9,16 @@ var authHelpers = require('../auth/auth-helpers');
 router.get('/', function(req, res, next) {
   models.Folder.findAll({ where: { user_id: req.user.dataValues.id } })
   .then(function(folders) {
+    let first_folder_id = null;
+    let first_folder_title = '';
+    if (folders.length < 1) {
+      first_folder_id = 89797947; // random id that can't match folder id
+      first_folder_title = 'no folder title exist';
+    }
+    else {
+      first_folder_id = folders[0].id;
+      first_folder_title = folders[0].title;
+    }
     models.Bookmarks.findAll({ where: { user_id: req.user.dataValues.id } })
     .then(function(bookmarks) {
       res.render('folders/index', {
@@ -17,8 +27,8 @@ router.get('/', function(req, res, next) {
         user_id: req.user.dataValues.id,
         user_firstName: req.user.dataValues.firstName,
         bookmarks: bookmarks,
-        folder_id: folders[0].id,
-        folder_title: folders[0].title
+        folder_id: first_folder_id,
+        folder_title: first_folder_title
       });
     });
   });
@@ -113,22 +123,88 @@ router.post('/new/bookmark', function(req, res, next) {
 // });
 
 //EDIT
-router.get('/bookmark/:id/edit', function(req, res, next) {
-  models.Bookmarks.findById(req.body.bookmark_id ).then(function(bookmark) {
-    res.render('folders/', { bookmark: bookmark });
+
+// router.put('/bookmarks/edit', function(req, res, next) {
+//   models.Bookmarks.update({
+//     title: req.body.title,
+//     url: req.body.url,
+//   }, { where: { id: req.body.bookmark_id } })
+//   .then(function() {
+//     res.redirect('/folders');
+//   });
+// });
+
+router.put('/bookmark/:id', function(req, res, next) {
+  models.Bookmarks.update({
+    title: req.body.bookmark_title,
+    url: req.body.bookmark_url,
+  }, { where: { id: req.body.bookmark_id } })
+  .then(function() {
+    // res.redirect('/folders');
+    models.Folder.findAll({ where: { user_id: req.user.dataValues.id } })
+    .then(function(folders) {
+      models.Bookmarks.findAll({ where: { user_id: req.user.dataValues.id } })
+      .then(function(bookmarks) {
+        res.render('folders/index', {
+          title: 'folders',
+          folders: folders,
+          user_id: req.user.dataValues.id,
+          user_firstName: req.user.dataValues.firstName,
+          bookmarks: bookmarks,
+          folder_id: req.body.folder_id,
+          folder_title: req.body.folder_title
+        });
+      });
+    });
   });
 });
-
 
 router.delete('/bookmark/:id', function(req, res, next) {
   models.Bookmarks.destroy({
     where: { id: req.body.bookmark_id }
   }).then(function(movie) {
-    res.redirect('/folders');
+    // res.redirect('/folders');
+    models.Folder.findAll({ where: { user_id: req.user.dataValues.id } })
+    .then(function(folders) {
+      models.Bookmarks.findAll({ where: { user_id: req.user.dataValues.id } })
+      .then(function(bookmarks) {
+        res.render('folders/index', {
+          title: 'folders',
+          folders: folders,
+          user_id: req.user.dataValues.id,
+          user_firstName: req.user.dataValues.firstName,
+          bookmarks: bookmarks,
+          folder_id: req.body.folder_id,
+          folder_title: req.body.folder_title
+        });
+      });
+    });
   });
 });
 
-
+router.delete('/:id', function(req, res, next) {
+  models.Folder.destroy({
+      where: { id: req.body.folder_id }
+  })
+  .then(function() {
+    // res.redirect('/folders');
+    models.Folder.findAll({ where: { user_id: req.user.dataValues.id } })
+    .then(function(folders) {
+      models.Bookmarks.findAll({ where: { user_id: req.user.dataValues.id } })
+      .then(function(bookmarks) {
+        res.render('folders/index', {
+          title: 'folders',
+          folders: folders,
+          user_id: req.user.dataValues.id,
+          user_firstName: req.user.dataValues.firstName,
+          bookmarks: bookmarks,
+          folder_id: req.body.folder_id,
+          folder_title: req.body.folder_title
+        });
+      });
+    });
+  });
+});
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 // creates a page that allows user to add a movie to the database
@@ -140,7 +216,6 @@ router.delete('/bookmark/:id', function(req, res, next) {
 //     });
 //   });
 // });
-
 
 // // creates route to folders/id# that renders movie titles and synopsis based on whichever movie id was requested
 // router.get('/:id', function(req, res, next) {

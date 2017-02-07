@@ -52,7 +52,13 @@
                     </form>
                 </div>
 
-                <div class="col-md-3 text-right"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
+                <div class="col-md-3 text-right">
+                  <form action="<%= '/folders/' + folder.id + '?_method=DELETE' %>" method="POST">
+                    <input type="hidden" name="folder_id" value="<%= folder.id %>" />
+                    <input type="hidden" name="folder_title" value="<%= folder.title %>" />
+                    <input type="submit" class="delete-iconz" value="&#xf014;" >
+                  </form>
+                </div>
               </div>
             </div>
           <% }) %>
@@ -87,11 +93,10 @@
                 <div class="row">
                   <div class="col-md-12 text-center bx-title-name"><%= bookmark.title %> </div>
                   <div class="col-md-12 text-center bx-url-name "><%= bookmark.url %></div>
-                  <div class="col-md-6 text-center edit-box">
-                    <i class="fa fa-pencil spa" aria-hidden="true"> </i>
+                  <div class="col-md-6 text-center edit-box" style="padding-bottom:14.5px;">
                       <!-- Edit -->
 
-                      <a href="" data-toggle="modal" data-id="<%= '/folders/' + bookmark.id%>" data-target="#<%= bookmark.id %>" class="btn btn-primary btn-lg">Edit</a>
+                      <a href="" data-toggle="modal" data-id="<%= '/folders/' + bookmark.id%>" data-target="#<%= bookmark.id %>" class=" delete-iconzs" ><i class="fa fa-pencil" aria-hidden="true"></i></a>
 
                       <!-- End edit -->
                    </div>
@@ -106,26 +111,30 @@
                           </div>
                           <div class="modal-body">
                             <div class="row">
-                              <form action="/folders" method="POST">
+                              <form action="<%= '/folders/bookmark/' + bookmark.id + '?_method=PUT' %>" method="POST">
                                 <div class="col-md-12">
                                   <div class="form-group">
                                     <label for="recipient-name" class="control-label">Title:</label>
-                                    <input type="text" name="email" name="bookmark_title" value="<%= bookmark.title %>">
+                                    <input type="text" name="bookmark_title" value="<%= bookmark.title %>">
+                                    <input type="hidden" name="bookmark_id" value="<%= bookmark.id %>" />
+                                    <input type="hidden" name="folder_title" value="<%= folder.title %>" />
+                                    <input type="hidden" name="folder_id" value="<%= folder.id %>" />
                                   </div>
                                 </div>
                                 <div class="col-md-12">
                                   <div class="form-group">
                                     <label for="recipient-name" class="control-label">Url:</label>
-                                    <input type="text" name="email" value="<%= bookmark.url %>">
+                                    <input type="text" name="bookmark_url" value="<%= bookmark.url %>">
                                   </div>
                                 </div>
-                              </form>
+
                             </div>
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <input type="submit" class="btn btn-primary" value="Save Changes" >
                           </div>
+                          </form>
                         </div>
                       </div>
                     </div>
