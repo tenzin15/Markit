@@ -1,26 +1,35 @@
 <% include ../partials/head.ejs %>
   <!-- test comment -->
-  <body class="boxz">
+  <body class="boxzForUserProfile">
     <% include ../partials/header.ejs %>
     <main>
-        <div class="container text-info">
+
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper light blue">
+        <h2 class="brand-logo">Hello <%= user.firstName %>, Your Profile</h2>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/auth/logout">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout
+              </a></li>
+          <li><a href="/folders">
+                <i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp;Bookmarks
+              </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+
+        <div class="container">
           <h2>Hello <%= user.firstName %>, Your Profile</h2>
-          <div class="panel panel-default">
+          <div class="panel panel-default text-info">
             <div class="panel-body">User Id: <%= user.id %></div><hr>
             <div class="panel-body">Username: <%= user.username %></div><hr>
             <div class="panel-body">First Name: <%= user.firstName %></div><hr>
             <div class="panel-body">Last Name: <%= user.lastName %></div><hr>
             <div class="panel-body">Email: <%= user.email %></div>
-            <div class="panel-footer">
-              <a href="/auth/logout">
-                <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout
-              </a>
-            </div>
-            <div class="panel-footer">
-              <a href="/folders">
-                <i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp;Bookmarks
-              </a>
-            </div>
           </div>
       </div>
     </main>
