@@ -62,6 +62,11 @@
         <div id="rwrapper" class="col-md-10 right-side">
           <div class="left-fixedz">
           <div class="row">
+            <div class="col-md-7">
+              <form id="custom-search-form" class="form-search form-horizontal pull-right">
+                <input type="text"  placeholder="Enter Bookmark URL">
+              </form>
+            </div>
 <% folders.forEach(function(folder) {
     bookmarks.forEach(function(bookmark) {
        if (parseInt(bookmark.folder_id) === parseInt(folder.id)) { %>
