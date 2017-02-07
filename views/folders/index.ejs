@@ -68,10 +68,20 @@
 
             </div>
             <div class="col-md-3 select-space">
+                  <% if (folders.length < 1) { %>
                   <select class="selectpicker btn-primary">
-                  <option>Mahabharata</option>
-                  <option>JavaScript</option>
-                  <option>I love react</option>
+                      <option>Add Folder</option>
+                  </select>
+                  <% } else { %>
+
+                  <select class="selectpicker btn-primary">
+                  <% folders.forEach(function(folder) {
+                      if (parseInt(folder.user_id) === parseInt(user_id)) { %>
+                        <option><%= folder.title %></option>
+                      <% } %>
+                 <% }) %>
+                  <% } %>
+
                   </select>
                 </div>
                 <div class="col-md-2">
