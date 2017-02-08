@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "YOUR_DB_USERNAME",
+    "username": "tenzin",
     "password": null,
-    "database": "markit_app_dev",
+    "database": "markit_app_development",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },

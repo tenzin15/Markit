@@ -16,13 +16,36 @@
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-2 col-sm-12 col-xs-12 sidebar-title text-center"><i class="fa fa-bars zzz hidden-sm hidden-xs" aria-hidden="true" id="menu-toggle"></i>Markit</div>
+            <div class="col-md-10">
+              <form action='/folders/bookmarks/search' method='POST'
+                  id="custom-search-form" class="form-search form-horizontal pull-right">
+                <div class="col-md-7 col-md-offset-2 col-xs-7 col-sm-7">
+                    <input type="hidden" name="folder_title" value="<%= folder_title %>" />
+                    <input type="hidden" name="folder_id" value="<%= folder_id %>" />
+                    <input type="text"  placeholder="Enter A Bookmark Title To Search" name="enterBookmarkTitleForSearch" value="" required>
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-3">
+                    <input class="kzz" type="submit" value="Search Bookmarks">
+                </div>
+              </form>
+            </div>
           </div>
         </div>
+
         <div id="lwrapper" class="col-md-3 col-xs-12-col-sm-12 left-side">
           <div class="left-fixedz">
           <div class="row text-center">
             <div class="col-md-12 usr-name"><i class="fa fa-user-circle spa" aria-hidden="true"></i><a href="/user"><%= user_firstName %></a></div>
-            <!-- <div class="col-md-12 usr-name"><i class="fa fa-star spa" aria-hidden="true"></i>Favorites</div> -->
+
+            <div class="col-md-12 col-xs-12 col-sm-12 folder usr-name">
+              <form action="/folders/bookmarks/favorites-list" method="POST">
+                <input type="hidden" name="folder_id" value="<%= folder_id %>" />
+                <input type="hidden" name="folder_title" value="<%= folder_title %>" />
+                <input type="submit" class="delete-iconz" value="&#xf005;&nbsp;Favorites" />
+              </form>
+            </div>
+
+
             <div class="col-md-12">
               <div class="creat">Create folder</div>
               <form  action='/folders/new' method='POST'>
@@ -63,25 +86,29 @@
           <div class="left-fixedz">
           <div class="row">
             <div class="col-md-12 text-center">
-            <h1><%= folder_title %>
+            <h1><%= folder_title %></h1>
             </div>
-            <form action='/folders/new/bookmark' method='POST'
-                  id="custom-search-form" class="form-search form-horizontal pull-right">
-              <div class="col-md-7 col-md-offset-2 col-xs-7 col-sm-7">
-                  <input type="hidden" name="folder_title" value="<%= folder_title %>" />
-                  <input type="hidden" name="folder_id" value="<%= folder_id %>" />
-                  <input type="text"  placeholder="Enter Bookmark URL" name="enterBookmarkUrl" value="" required>
-              </div>
-              <div class="col-md-2 col-sm-3 col-xs-3">
-                  <input class="kzz" type="submit" value="Add Bookmark">
-              </div>
-            </form>
+            <% if (folder_title !== "Favorite Bookmarks") { %>
+              <form action='/folders/new/bookmark' method='POST'
+                    id="custom-search-form" class="form-search form-horizontal pull-right">
+                <div class="col-md-7 col-md-offset-2 col-xs-7 col-sm-7">
+                    <input type="hidden" name="folder_title" value="<%= folder_title %>" />
+                    <input type="hidden" name="folder_id" value="<%= folder_id %>" />
+                    <input type="text"  placeholder="Enter Bookmark URL" name="enterBookmarkUrl" value="" required>
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-3">
+                    <input class="kzz" type="submit" value="Add Bookmark">
+                </div>
+              </form>
+            <% } %>
 
-<% folders.forEach(function(folder) {
-    if (parseInt(folder.id) === parseInt(folder_id)) {
-      bookmarks.reverse().forEach(function(bookmark) {
-         if (parseInt(bookmark.folder_id) === parseInt(folder.id)) { %>
-              <div class="col-md-3">
+<!-- render the favorite bookmarks -->
+<% if (folder_title === "Favorite Bookmarks") {
+    folders.forEach(function(folder) {
+      if (parseInt(folder.id) === parseInt(folder_id)) {
+        bookmarks.reverse().forEach(function(bookmark) {
+           if (bookmark.favorite === true) { %>
+                <div class="col-md-3">
               <div class="boxz">
                 <div class="row">
                   <!-- this is the bookmark title and url, and link to url in a new tab -->
@@ -89,11 +116,19 @@
                     <div class="col-md-12 text-center bx-title-name"><%= bookmark.title %> </div>
                     <div class="col-md-12 text-center bx-url-name "><%= bookmark.url %></div>
                   </a>
-                  <div class="col-md-6 col-xs-6 col-sm-6 text-center edit-box" style="padding-bottom:14.5px;">
+
+                  <div class="col-md-4 col-xs-4 col-sm-4 text-center delete-box">
+                    <form action="/folders/bookmarks/favorites" method="POST">
+                      <input type="hidden" name="bookmark_id" value="<%= bookmark.id %>" />
+                      <input type="hidden" name="folder_id" value="<%= folder.id %>" />
+                      <input type="hidden" name="folder_title" value="<%= folder.title %>" />
+                      <input type="submit" class="delete-iconz" value="&#xf005;" >
+                    </form>
+                  </div>
+
+                  <div class="col-md-4 col-xs-4 col-sm-4 text-center edit-box" style="padding-bottom:14.5px;">
                       <!-- Edit -->
-
                       <a href="" data-toggle="modal" data-id="<%= '/folders/' + bookmark.id%>" data-target="#<%= bookmark.id %>" class=" delete-iconzs" ><i class="fa fa-pencil" aria-hidden="true"></i></a>
-
                       <!-- End edit -->
                    </div>
 
@@ -135,7 +170,7 @@
                       </div>
                     </div>
 
-                  <div class="col-md-6 col-xs-6 col-sm-6 text-center delete-box">
+                  <div class="col-md-4 col-xs-4 col-sm-4 text-center delete-box">
                     <form action="<%= '/folders/bookmark/' + bookmark.id + '?_method=DELETE' %>" method="POST">
                       <input type="hidden" name="bookmark_id" value="<%= bookmark.id %>" />
                       <input type="hidden" name="folder_id" value="<%= folder.id %>" />
@@ -148,7 +183,93 @@
               </div>
               </div>
         <% }})} %>
-<% }) %>
+<% })} %>
+
+
+
+
+<!-- render the folders and its bookmarks -->
+<% if (folder_title !== "Favorite Bookmarks") {
+    folders.forEach(function(folder) {
+      if (parseInt(folder.id) === parseInt(folder_id)) {
+        bookmarks.reverse().forEach(function(bookmark) {
+           if (parseInt(bookmark.folder_id) === parseInt(folder.id)) { %>
+                <div class="col-md-3">
+              <div class="boxz">
+                <div class="row">
+                  <!-- this is the bookmark title and url, and link to url in a new tab -->
+                  <a href="<%= bookmark.url %>" target="_blank">
+                    <div class="col-md-12 text-center bx-title-name"><%= bookmark.title %> </div>
+                    <div class="col-md-12 text-center bx-url-name "><%= bookmark.url %></div>
+                  </a>
+
+                  <div class="col-md-4 col-xs-4 col-sm-4 text-center delete-box">
+                    <form action="/folders/bookmarks/favorites" method="POST">
+                      <input type="hidden" name="bookmark_id" value="<%= bookmark.id %>" />
+                      <input type="hidden" name="folder_id" value="<%= folder.id %>" />
+                      <input type="hidden" name="folder_title" value="<%= folder.title %>" />
+                      <input type="submit" class="delete-iconz" value="&#xf005;" >
+                    </form>
+                  </div>
+
+                  <div class="col-md-4 col-xs-4 col-sm-4 text-center edit-box" style="padding-bottom:14.5px;">
+                      <!-- Edit -->
+                      <a href="" data-toggle="modal" data-id="<%= '/folders/' + bookmark.id%>" data-target="#<%= bookmark.id %>" class=" delete-iconzs" ><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                      <!-- End edit -->
+                   </div>
+
+                   <!-- Modal -->
+                    <div class="modal fade" id="<%= bookmark.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Edit</h4>
+                          </div>
+                          <div class="modal-body">
+                            <div class="row">
+                              <form action="<%= '/folders/bookmark/' + bookmark.id + '?_method=PUT' %>" method="POST">
+                                <div class="col-md-12">
+                                  <div class="form-group">
+                                    <label for="recipient-name" class="control-label">Title:</label>
+                                    <input type="text" name="bookmark_title" value="<%= bookmark.title %>">
+                                    <input type="hidden" name="bookmark_id" value="<%= bookmark.id %>" />
+                                    <input type="hidden" name="folder_title" value="<%= folder.title %>" />
+                                    <input type="hidden" name="folder_id" value="<%= folder.id %>" />
+                                  </div>
+                                </div>
+                                <div class="col-md-12">
+                                  <div class="form-group">
+                                    <label for="recipient-name" class="control-label">Url:</label>
+                                    <input type="text" name="bookmark_url" value="<%= bookmark.url %>">
+                                  </div>
+                                </div>
+
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary" value="Save Changes" >
+                          </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+
+                  <div class="col-md-4 col-xs-4 col-sm-4 text-center delete-box">
+                    <form action="<%= '/folders/bookmark/' + bookmark.id + '?_method=DELETE' %>" method="POST">
+                      <input type="hidden" name="bookmark_id" value="<%= bookmark.id %>" />
+                      <input type="hidden" name="folder_id" value="<%= folder.id %>" />
+                      <input type="hidden" name="folder_title" value="<%= folder.title %>" />
+                      <input type="submit" class="delete-iconz" value="&#xf014;" >
+                    </form>
+                  </div>
+
+                </div>
+              </div>
+              </div>
+        <% }})} %>
+<% })} %>
 
             </div>
           </div>

@@ -109,6 +109,72 @@ router.post('/new/bookmark', function(req, res, next) {
   });
 });
 
+// post for bookmarks search
+router.post('/bookmarks/search', function(req, res, next) {
+    models.Folder.findAll({ where: { user_id: req.user.dataValues.id } })
+    .then(function(folders) {
+      models.Bookmarks.findAll({ where: { user_id: req.user.dataValues.id, title: { $ilike: `%${req.body.enterBookmarkTitleForSearch}%` } } })
+      .then(function(bookmarks) {
+        res.render('folders/index', {
+          title: 'folders',
+          folders: folders,
+          user_id: req.user.dataValues.id,
+          user_firstName: req.user.dataValues.firstName,
+          bookmarks: bookmarks,
+          folder_id: req.body.folder_id,
+          folder_title: req.body.folder_title
+        });
+      });
+    });
+  });
+
+// post for bookmarks favorites
+// update the Bookmarks models by setting favorite column to true
+router.post('/bookmarks/favorites', function(req, res, next) {
+    models.Bookmarks.update({
+      favorite: true
+    }, { where: { id: req.body.bookmark_id } })
+    .then(function() {
+      models.Folder.findAll({ where: { user_id: req.user.dataValues.id } })
+      .then(function(folders) {
+        models.Bookmarks.findAll({ where: { user_id: req.user.dataValues.id } })
+        .then(function(bookmarks) {
+          res.render('folders/index', {
+            title: 'folders',
+            folders: folders,
+            user_id: req.user.dataValues.id,
+            user_firstName: req.user.dataValues.firstName,
+            bookmarks: bookmarks,
+            folder_id: req.body.folder_id,
+            folder_title: req.body.folder_title
+          });
+        });
+      });
+    });
+  });
+
+
+// display only the favorite bookmarks
+router.post('/bookmarks/favorites-list', function(req, res, next) {
+  models.Folder.findAll({ where: { user_id: req.user.dataValues.id } })
+  .then(function(folders) {
+    models.Bookmarks.findAll({ where: { user_id: req.user.dataValues.id } })
+    .then(function(bookmarks) {
+      res.render('folders/index', {
+        title: 'folders',
+        folders: folders,
+        user_id: req.user.dataValues.id,
+        user_firstName: req.user.dataValues.firstName,
+        bookmarks: bookmarks,
+        folder_id: req.body.folder_id,
+        folder_title: "Favorite Bookmarks"
+      });
+    });
+  });
+});
+
+
+
 // // create a new bookmark
 // router.post('/new/bookmark', function(req, res, next) {
 //   models.Bookmarks.create({
