@@ -26,7 +26,7 @@
             <div class="col-md-12">
               <div class="creat">Create folder</div>
               <form  action='/folders/new' method='POST'>
-                <input type="text" name="folder_title" required />
+                <input type="text" name="folder_title" placeholder="Enter The Folder Title" required />
                 <input type="hidden" name="user_id" value="<%= user_id %>" />
                 <input class="btn btn-primary alg" type="submit" value="Add Folder">
               </form>
@@ -63,6 +63,7 @@
           <div class="left-fixedz">
           <div class="row">
             <div class="col-md-12 text-center">
+            <h1><%= folder_title %>
             </div>
             <form action='/folders/new/bookmark' method='POST'
                   id="custom-search-form" class="form-search form-horizontal pull-right">
@@ -83,8 +84,11 @@
               <div class="col-md-3">
               <div class="boxz">
                 <div class="row">
-                  <div class="col-md-12 text-center bx-title-name"><%= bookmark.title %> </div>
-                  <div class="col-md-12 text-center bx-url-name "><%= bookmark.url %></div>
+                  <!-- this is the bookmark title and url, and link to url in a new tab -->
+                  <a href="<%= bookmark.url %>" target="_blank">
+                    <div class="col-md-12 text-center bx-title-name"><%= bookmark.title %> </div>
+                    <div class="col-md-12 text-center bx-url-name "><%= bookmark.url %></div>
+                  </a>
                   <div class="col-md-6 col-xs-6 col-sm-6 text-center edit-box" style="padding-bottom:14.5px;">
                       <!-- Edit -->
 
