@@ -84,15 +84,16 @@ In understanding our target user, we were able to understand a better user flow;
 
 ![UX user flow-ux teamwork] (https://github.com/tenzin15/Markit/blob/master/public/img/UXTeamwork.JPG?raw=true)
 
+
+## Wireframes and Trello:
+
+
 ![Login Page First Draft](https://github.com/tenzin15/Markit/blob/master/public/img/login1stroughdraft.png?raw=true)
 
 ![Bookmarks Page First Draft] (https://github.com/tenzin15/Markit/blob/master/public/img/bookmarkspg1roughdraft.png?raw=true)
 
 
 We Created a user journey with the app [invision](https://projects.invisionapp.com/share/4DAAIXRAM#/screens)
-
-
-## Wireframes and Trello:
 
 We used [Trello](https://trello.com/b/RcBPS5kw) to manage workflow and make sure to check what was and was not completed in our MVP
 
