@@ -86,13 +86,16 @@
 
 <% folders.forEach(function(folder) {
     if (parseInt(folder.id) === parseInt(folder_id)) {
-      bookmarks.forEach(function(bookmark) {
+      bookmarks.reverse().forEach(function(bookmark) {
          if (parseInt(bookmark.folder_id) === parseInt(folder.id)) { %>
               <div class="col-md-3">
               <div class="boxz">
                 <div class="row">
-                  <div class="col-md-12 text-center bx-title-name"><%= bookmark.title %> </div>
-                  <div class="col-md-12 text-center bx-url-name "><%= bookmark.url %></div>
+                  <!-- this is the bookmark title and url, and link to url in a new tab -->
+                  <a href="<%= bookmark.url %>" target="_blank">
+                    <div class="col-md-12 text-center bx-title-name"><%= bookmark.title %> </div>
+                    <div class="col-md-12 text-center bx-url-name "><%= bookmark.url %></div>
+                  </a>
                   <div class="col-md-6 text-center edit-box" style="padding-bottom:14.5px;">
                       <!-- Edit -->
 
