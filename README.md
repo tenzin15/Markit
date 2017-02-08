@@ -3,7 +3,7 @@ Simple bookmark app that is accessible from any browser, any computer. With loca
 you can't access your bookmarks outside of that particualr browser and computer. With Markit, you can save and access your bookmarks 
 from any browser and computer. 
 
-[LIVE DEMO](https://markit-x.herokuapp.com/) | [CODE](https://github.com/tenzin15/Markit) | [Trello](https://trello.com/b/RcBPS5kw/markit-bookmark)
+[LIVE DEMO](https://markit-x.herokuapp.com/) | [CODE](https://github.com/tenzin15/Markit) | [TRELLO](https://trello.com/b/RcBPS5kw/markit-bookmark)
 
 
 ## Technologies Used:
