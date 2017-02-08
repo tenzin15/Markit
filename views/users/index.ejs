@@ -7,8 +7,8 @@
   <div class="navbar-fixed">
     <nav>
       <div class="nav-wrapper light blue">
-        <h2 class="brand-logo">Hello <%= user.firstName %>, Your Profile</h2>
-        <ul class="right hide-on-med-and-down">
+        <h2 class="brand-logo center">Hello <%= user.firstName %>, Your Profile</h2>
+        <ul class="right hide-on-med-and-down mzs">
           <li><a href="/auth/logout">
                 <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout
               </a></li>
@@ -25,11 +25,11 @@
         <div class="container">
           <h2>Hello <%= user.firstName %>, Your Profile</h2>
           <div class="panel panel-default text-info">
-            <div class="panel-body">User Id: <%= user.id %></div><hr>
             <div class="panel-body">Username: <%= user.username %></div><hr>
             <div class="panel-body">First Name: <%= user.firstName %></div><hr>
             <div class="panel-body">Last Name: <%= user.lastName %></div><hr>
-            <div class="panel-body">Email: <%= user.email %></div>
+            <div class="panel-body">Email: <%= user.email %></div><hr>
+            <div class="panel-body">Created On: <%= user.createdAt %></div>
           </div>
       </div>
     </main>
