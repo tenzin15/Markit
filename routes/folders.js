@@ -182,14 +182,25 @@ router.delete('/bookmark/:id', function(req, res, next) {
   });
 });
 
+
+// delete a folder
 router.delete('/:id', function(req, res, next) {
   models.Folder.destroy({
       where: { id: req.body.folder_id }
   })
   .then(function() {
-    // res.redirect('/folders');
     models.Folder.findAll({ where: { user_id: req.user.dataValues.id } })
     .then(function(folders) {
+      let first_folder_id = null;
+      let first_folder_title = '';
+      if (folders.length < 1) {
+        first_folder_id = 89797947; // random id that can't match folder id
+        first_folder_title = 'No Folder Added Yet!';
+      }
+      else {
+        first_folder_id = folders[0].id;
+        first_folder_title = folders[0].title;
+      }
       models.Bookmarks.findAll({ where: { user_id: req.user.dataValues.id } })
       .then(function(bookmarks) {
         res.render('folders/index', {
@@ -198,8 +209,8 @@ router.delete('/:id', function(req, res, next) {
           user_id: req.user.dataValues.id,
           user_firstName: req.user.dataValues.firstName,
           bookmarks: bookmarks,
-          folder_id: req.body.folder_id,
-          folder_title: req.body.folder_title
+          folder_id: first_folder_id,
+          folder_title: first_folder_title
         });
       });
     });
