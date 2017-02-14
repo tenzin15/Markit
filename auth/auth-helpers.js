@@ -31,7 +31,7 @@ function createUser(req, res) {
     lastName: req.body.lastName,
     email: req.body.email
   }).then(() => {
-    res.redirect('/');
+    res.redirect('/auth/login');
   });
 }
 

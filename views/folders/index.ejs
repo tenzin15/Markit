@@ -71,7 +71,7 @@
                   <form action="<%= '/folders/' + folder.id + '?_method=DELETE' %>" method="POST">
                     <input type="hidden" name="folder_id" value="<%= folder.id %>" />
                     <input type="hidden" name="folder_title" value="<%= folder.title %>" />
-                    <input type="submit" class="delete-iconz tkt" value="&#xf014;" >
+                    <input type="submit" class="delete-iconz tkt" value="   &#xf014;  " >
                   </form>
                 </div>
               </div>
@@ -122,15 +122,15 @@
                       <input type="hidden" name="bookmark_id" value="<%= bookmark.id %>" />
                       <input type="hidden" name="folder_id" value="<%= folder.id %>" />
                       <input type="hidden" name="folder_title" value="<%= folder.title %>" />
-                      <input type="submit" class="delete-iconz" value="&#xf005;" >
+                      <input type="submit" class="delete-iconz" value="   &#xf005;   " >
                     </form>
                   </div>
 
-                  <div class="col-md-4 col-xs-4 col-sm-4 text-center edit-box" style="padding-bottom:14.5px;">
-                      <!-- Edit -->
-                      <a href="" data-toggle="modal" data-id="<%= '/folders/' + bookmark.id%>" data-target="#<%= bookmark.id %>" class=" delete-iconzs" ><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                      <!-- End edit -->
-                   </div>
+                  <a href="" data-toggle="modal" data-id="<%= '/folders/' + bookmark.id%>" data-target="#<%= bookmark.id %>" class=" delete-iconzs" >
+                    <div class="col-md-4 col-xs-4 col-sm-4 text-center edit-box" style="padding-bottom:14.5px;">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                     </div>
+                   </a>
 
                    <!-- Modal -->
                     <div class="modal fade" id="<%= bookmark.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -175,7 +175,7 @@
                       <input type="hidden" name="bookmark_id" value="<%= bookmark.id %>" />
                       <input type="hidden" name="folder_id" value="<%= folder.id %>" />
                       <input type="hidden" name="folder_title" value="<%= folder.title %>" />
-                      <input type="submit" class="delete-iconz" value="&#xf014;" >
+                      <input type="submit" class="delete-iconz" value="   &#xf014;   " >
                     </form>
                   </div>
 
@@ -208,15 +208,15 @@
                       <input type="hidden" name="bookmark_id" value="<%= bookmark.id %>" />
                       <input type="hidden" name="folder_id" value="<%= folder.id %>" />
                       <input type="hidden" name="folder_title" value="<%= folder.title %>" />
-                      <input type="submit" class="delete-iconz" value="&#xf005;" >
+                      <input type="submit" class="delete-iconz" value="   &#xf005;   " >
                     </form>
                   </div>
 
-                  <div class="col-md-4 col-xs-4 col-sm-4 text-center edit-box" style="padding-bottom:14.5px;">
-                      <!-- Edit -->
-                      <a href="" data-toggle="modal" data-id="<%= '/folders/' + bookmark.id%>" data-target="#<%= bookmark.id %>" class=" delete-iconzs" ><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                      <!-- End edit -->
-                   </div>
+                   <a href="" data-toggle="modal" data-id="<%= '/folders/' + bookmark.id%>" data-target="#<%= bookmark.id %>" class=" delete-iconzs" >
+                     <div class="col-md-4 col-xs-4 col-sm-4 text-center edit-box" style="padding-bottom:14.5px;">
+                       <i class="fa fa-pencil" aria-hidden="true"></i>
+                     </div>
+                   </a>
 
                    <!-- Modal -->
                     <div class="modal fade" id="<%= bookmark.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -261,7 +261,7 @@
                       <input type="hidden" name="bookmark_id" value="<%= bookmark.id %>" />
                       <input type="hidden" name="folder_id" value="<%= folder.id %>" />
                       <input type="hidden" name="folder_title" value="<%= folder.title %>" />
-                      <input type="submit" class="delete-iconz" value="&#xf014;" >
+                      <input type="submit" class="delete-iconz" value="  &#xf014;   " >
                     </form>
                   </div>
 
