@@ -1,4 +1,6 @@
 # [Demo](https://markit-x.herokuapp.com/)
+* username: tenzin
+* password: tenzin
 
 # Mark It
 
